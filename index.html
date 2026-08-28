@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rayane — Independent Design & Engineering Studio</title>
+<meta name="description" content="Rayane is an independent studio crafting brands, products, and the systems that connect them — bold ideas, shipped with quiet precision." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:auto}
+body{background:#ffffff;color:#111111;font-family:'Onest',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+ul{list-style:none}
+img{display:block}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid #b15f2c;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+@media (max-width:1920px){html{font-size:0.833333vw}}
+@media (max-width:1440px){html{font-size:1.111111vw}}
+@media (max-width:1024px){html{font-size:1.5625vw}}
+@media (max-width:640px){html{font-size:4.444444vw}}
+:root{
+--background:#ffffff;--foreground:#111111;--ink:#0a0a0a;--muted:#8d8d8d;--subtle:#b6b6b6;--line:#e6e5e2;
+--surface:#f1f0ee;--surface-2:#e3e2df;--accent:#b15f2c;--accent-from:#cf8047;--accent-to:#97501f;
+--hero-from:#ecebe9;--hero-to:#c9c9c9;--radius-pill:9999px;--radius-card:2rem;--radius-card-sm:1.25rem;
+--radius-control:0.875rem;--text-watermark:13rem;--container-shell:88rem;
+}
+.shell{max-width:var(--container-shell);margin-inline:auto;padding-inline:1.25rem;width:100%}
+@media (min-width:640px){.shell{padding-inline:2rem}}
+#page-loader{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;background:#0a0a0a;color:#fff;border-radius:0 0 2rem 2rem}
+.skip-link{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link:focus-visible{position:fixed;left:1rem;top:1rem;z-index:60;border-radius:0.875rem;background:#0a0a0a;padding:0.5rem 1rem;font-size:0.875rem;color:#fff;width:auto;height:auto;clip:auto;overflow:visible}
+#header{position:absolute;inset-inline:0;top:0;z-index:50}
+.header-container{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.25rem}
+@media (min-width:640px){.header-container{padding:1.5rem 2rem}}
+.brand-logo{display:flex;align-items:center;gap:0.5rem;font-size:1.125rem;font-weight:600;letter-spacing:-0.01em;transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.desktop-nav{display:none}
+@media (min-width:1024px){.desktop-nav{display:flex}}
+.desktop-nav ul{display:flex;gap:2rem;font-size:0.875rem;font-weight:500}
+.nav-link{font-size:0.875rem;font-weight:500;position:relative;display:inline-block;opacity:0.8;transform:translateY(0);transition:transform 0.38s cubic-bezier(0.2,0.8,0.2,1),opacity 0.38s cubic-bezier(0.2,0.8,0.2,1)}
+.clock-chip{display:none;border:1px solid rgba(230,229,226,0.8);background:rgba(255,255,255,0.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border-radius:0.875rem;padding:0.5rem 0.75rem;gap:0.75rem;font-size:0.75rem;color:rgba(17,17,17,0.7);align-items:center}
+@media (min-width:768px){.clock-chip{display:flex}}
+.menu-btn{border:1px solid rgba(230,229,226,0.8);background:rgba(255,255,255,0.4);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border-radius:0.875rem;transition:background-color 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.menu-btn-inner{display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.menu-text-label{display:none}
+@media (min-width:640px){.menu-text-label{display:inline}}
+#home{position:relative;isolation:isolate;overflow:hidden;border-radius:0 0 2rem 2rem;background:#c9c9c9;min-height:100vh}
+.liquid-container{position:absolute;inset:0;z-index:0;pointer-events:none}
+.liquid-base-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#liquid-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.legibility-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom, rgba(255,255,255,0.35), transparent, rgba(255,255,255,0.35))}
+.hero-watermark{pointer-events:none;position:absolute;inset-inline:0;bottom:7rem;z-index:1;text-align:center;user-select:none;font-weight:700;line-height:1;font-size:13rem;color:rgba(255,255,255,0.4)}
+.hero-content-grid{position:relative;z-index:2;display:flex;flex-direction:column;gap:2rem;padding:7rem 1.25rem 5rem}
+@media (min-width:640px){.hero-content-grid{padding:7rem 2rem 5rem}}
+@media (min-width:1024px){.hero-content-grid{display:grid;min-height:100vh;grid-template-columns:repeat(12,1fr);gap:2.5rem;padding:9rem 2rem 7rem}}
+.hero-col-left{display:flex;flex-direction:column;gap:1.75rem}
+@media (min-width:1024px){.hero-col-left{grid-column:span 7}}
+.hero-col-right{display:flex;flex-direction:column;align-items:flex-start;gap:2rem;width:100%}
+@media (min-width:1024px){.hero-col-right{grid-column:span 5;align-items:flex-end}}
+#hero-carousel-card{width:100%;max-width:24rem;border-radius:1.25rem;background:rgba(255,255,255,0.7);padding:0.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.05);border:1px solid rgba(230,229,226,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media (min-width:1024px){#hero-carousel-card{max-width:19rem}}
+.carousel-track{position:relative;min-height:3.25rem;overflow:hidden;width:100%}
+.carousel-item{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.3s cubic-bezier(0.16,1,0.3,1),transform 0.3s cubic-bezier(0.16,1,0.3,1)}
+.carousel-item.active{opacity:1;transform:translateY(0);pointer-events:auto}
+.carousel-item.exit-to-top{opacity:0;transform:translateY(-14px)}
+.carousel-item.exit-to-bottom{opacity:0;transform:translateY(14px)}
+.carousel-item.enter-from-top{opacity:0;transform:translateY(-14px)}
+.carousel-item.enter-from-bottom{opacity:0;transform:translateY(14px)}
+#hero-partners-block{width:100%;max-width:24rem}
+@media (min-width:1024px){#hero-partners-block{max-width:19rem}}
+.partner-item{display:flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:rgba(17,17,17,0.7);opacity:0.7;transform:translateY(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1),opacity 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.partner-icon{width:0.875rem;height:0.875rem;color:rgba(17,17,17,0.4);flex-shrink:0}
+#hero-status-bar{grid-column:span 12;margin-top:auto}
+.status-center-text{display:none}
+@media (min-width:640px){.status-center-text{display:block}}
+.about-globe-bg{position:absolute;left:-1rem;top:50%;transform:translateY(-50%);font-size:12rem;width:12rem;height:12rem;color:rgba(17,17,17,0.07);pointer-events:none}
+.text-h2-about{font-size:1.5rem}
+@media (min-width:640px){.text-h2-about{font-size:1.875rem}}
+@media (min-width:1024px){
+#about .shell{grid-template-columns:1fr 1fr;padding-top:7rem;padding-bottom:7rem}
+.about-globe-col{min-height:20rem !important}
+.about-globe-bg{left:-1.5rem;font-size:20rem;width:20rem;height:20rem}
+}
+.social-chip{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:9999px;transition:transform 0.35s cubic-bezier(0.2,0.85,0.2,1)}
+.pill-btn{display:inline-flex;align-items:center;gap:0.75rem;border-radius:9999px;font-size:0.875rem;font-weight:500;border:none;background:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.pill-btn.dark{background:#0a0a0a;color:#fff}
+.pill-btn.light{background:#f1f0ee;color:#111}
+.pill-btn.outline{border:1px solid #e6e5e2;background:transparent;color:#111}
+.pill-btn-badge{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:9999px;font-size:1rem;flex-shrink:0}
+.pill-btn-icon{transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.pill-btn-wrap{display:inline-block;transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.arrow-tile-icon{width:2.25rem;height:2.25rem}
+@media (min-width:640px){
+.arrow-tile-icon{width:3rem;height:3rem}
+#about + section ul.shell{flex-direction:row !important;gap:1rem !important;padding-left:2rem !important;padding-right:2rem !important}
+}
+.create-tile{display:grid;place-items:center;height:6rem;border-radius:9999px;font-size:1.875rem;font-weight:500;transform:scale(1);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);width:100%}
+@media (min-width:640px){.create-tile{height:10rem;font-size:2.25rem}}
+.create-tile-wrap{flex:1;width:100%}
+.text-h2-portfolio{font-size:2.25rem}
+@media (min-width:640px){
+#works .shell{padding-left:2rem;padding-right:2rem}
+.text-h2-portfolio{font-size:3rem}
+}
+@media (min-width:1024px){#works .shell{padding-bottom:7rem}}
+@media (min-width:768px){#works ul{grid-template-columns:repeat(2,1fr) !important}}
+.portfolio-card{position:relative;min-height:22rem;overflow:hidden;border-radius:2rem;background:#0a0a0a;padding:1.5rem;color:#fff;border:1px solid rgba(255,255,255,0.05);transform:translateY(0) scale(1);transition:transform 0.4s cubic-bezier(0.2,0.8,0.25,1);display:flex;flex-direction:column;justify-content:space-between;width:100%}
+@media (min-width:640px){.portfolio-card{min-height:26rem;padding:2rem}}
+.portfolio-badge{width:2.75rem;height:2.75rem;display:grid;place-items:center;border-radius:9999px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.15);transform:rotate(0deg) scale(1);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.portfolio-meta{display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.025em;color:rgba(255,255,255,0.45);width:100%;z-index:10}
+.portfolio-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:1;gap:0.125rem}
+.portfolio-reg{font-size:0.75rem;color:rgba(255,255,255,0.6);vertical-align:super;margin-top:-1.5rem}
+.portfolio-info{z-index:10;display:flex;flex-direction:column;width:100%}
+.portfolio-info h3{font-size:1.5rem;font-weight:500;letter-spacing:-0.01em;color:#fff;margin-bottom:0.5rem}
+@media (min-width:640px){.portfolio-info h3{font-size:1.875rem}}
+.portfolio-info p{font-size:0.875rem;color:rgba(255, 255, 255, 0.55);max-width:28rem;line-height:1.45}
+.portfolio-tags{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag-chip{display:inline-flex;border:1px solid rgba(255, 255, 255, 0.25);color:#fff;border-radius:9999px;padding:0.5rem 1rem;font-size:0.875rem;line-height:1}
+.portfolio-card-link{display:block;width:100%;height:100%}
+.text-h2-services{font-size:2.25rem}
+.service-index{width:1.75rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.4);flex-shrink:0}
+.service-title{flex:1;font-size:1.5rem;font-weight:500;letter-spacing:-0.01em;color:#111}
+.service-desc{display:none;max-width:20rem;font-size:0.875rem;color:rgba(17,17,17,0.55);margin-right:2rem}
+@media (min-width:640px){
+#services .shell{padding-left:2rem;padding-right:2rem}
+.text-h2-services{font-size:3rem;margin-bottom:3.5rem !important}
+.service-index{width:2.5rem}
+.service-title{font-size:1.875rem}
+}
+@media (min-width:768px){.service-title{font-size:2.25rem}}
+@media (min-width:1024px){
+#services .shell{padding-top:7rem;padding-bottom:7rem}
+.service-desc{display:block}
+}
+.service-row{display:flex;align-items:center;gap:1rem;border-radius:1.25rem;padding:1.5rem;background:rgba(241,240,238,0);transition:background-color 0.4s cubic-bezier(0.25,0.8,0.25,1),padding-left 0.4s cubic-bezier(0.25,0.8,0.25,1),padding-right 0.4s cubic-bezier(0.25,0.8,0.25,1)}
+@media (min-width:640px){.service-row{gap:1.5rem;padding:2rem 1.5rem}}
+.service-badge{width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:9999px;background:#0a0a0a;color:#fff;transform:translateX(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);flex-shrink:0}
+@media (min-width:640px){.service-badge{width:3rem;height:3rem}}
+.text-h2-stats{font-size:1.875rem}
+@media (min-width:640px){#stats-grid + section .shell{padding-left:2rem !important;padding-right:2rem !important}}
+@media (min-width:768px){
+.text-h2-stats{font-size:2.25rem}
+.stats-panel-reveal{padding-left:4rem !important;padding-right:4rem !important}
+}
+@media (min-width:1024px){
+#stats-grid{grid-template-columns:repeat(4,1fr) !important}
+.stats-panel-reveal{padding-top:4rem !important;padding-bottom:4rem !important}
+}
+.stat-number-wrap{font-size:3rem;font-weight:600;letter-spacing:-0.02em;color:#fff;line-height:1}
+@media (min-width:640px){.stat-number-wrap{font-size:3.75rem}}
+@media (min-width:768px){.stat-number-wrap{font-size:4.5rem}}
+.stat-label{margin-top:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.55)}
+.text-h2-footer-cta{font-size:2.25rem;line-height:1}
+@media (min-width:640px){
+footer .shell{padding-left:2rem !important;padding-right:2rem !important}
+.text-h2-footer-cta{font-size:3rem}
+.footer-legal-bar{flex-direction:row !important}
+}
+@media (min-width:768px){
+.text-h2-footer-cta{font-size:3.75rem}
+.footer-cols-grid{grid-template-columns:repeat(2,1fr) !important}
+}
+@media (min-width:1024px){
+footer .shell{padding-top:6rem !important}
+.footer-cta-row{flex-direction:row !important;align-items:flex-end !important;justify-content:space-between !important}
+.footer-cols-grid{grid-template-columns:repeat(4,1fr) !important}
+}
+.footer-col-title{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.025em;color:rgba(255,255,255,0.4)}
+.footer-watermark{position:absolute;inset-inline:0;bottom:-1.5rem;z-index:0;text-align:center;pointer-events:none;user-select:none;font-weight:700;line-height:1;font-size:13rem;color:rgba(255,255,255,0.05)}
+.animated-link{display:inline-flex;align-items:center}
+.animated-link-inner{display:inline-block;opacity:0.65;transform:translateX(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1),opacity 0.35s cubic-bezier(0.2,0.8,0.2,1)}
+.legal-link .animated-link-inner{opacity:0.7}
+dialog.nav-dialog{border:none;background:transparent;padding:0;margin:0;width:100vw;height:100vh;max-width:none;max-height:none;overflow:hidden}
+dialog.nav-dialog::backdrop{background:transparent}
+dialog.nav-dialog[open]{display:flex;flex-direction:column}
+.nav-panel{flex:1;display:flex;flex-direction:column;background:#0a0a0a;color:#fff;opacity:0;transition:opacity 0.28s cubic-bezier(0.2,0.8,0.25,1)}
+.nav-dialog-open .nav-panel{opacity:1}
+.nav-dialog-closing .nav-panel{opacity:0}
+.nav-menu-btn-item{display:flex;align-items:baseline;gap:1rem;padding-block:0.5rem;text-align:left;font-size:2.25rem;font-weight:600;letter-spacing:-0.02em;width:100%;color:inherit;background:none;border:none;cursor:pointer}
+@media (min-width:640px){
+.nav-panel .shell{padding-left:2rem !important;padding-right:2rem !important}
+.nav-menu-btn-item{font-size:3.75rem}
+.nav-menu-bottom{flex-direction:row !important;justify-content:space-between !important}
+}
+.nav-menu-idx{font-size:1rem;font-weight:400;color:rgba(255,255,255,0.3);transition:color 0.3s}
+.nav-menu-label{color:rgba(255,255,255,0.7);transition:color 0.3s}
+.nav-item{transform:translateY(1rem);opacity:0;transition:transform 0.5s cubic-bezier(0.165,0.84,0.44,1),opacity 0.5s cubic-bezier(0.165,0.84,0.44,1)}
+.nav-dialog-open .nav-item{transform:translateY(0);opacity:1}
+.nav-item:nth-child(1){transition-delay:80ms}
+.nav-item:nth-child(2){transition-delay:125ms}
+.nav-item:nth-child(3){transition-delay:170ms}
+.nav-item:nth-child(4){transition-delay:215ms}
+.nav-item:nth-child(5){transition-delay:260ms}
+.nav-item:nth-child(6){transition-delay:305ms}
+dialog.modal-dialog{border:none;background:transparent;padding:1rem;margin:auto;width:100%;max-width:34rem;box-sizing:border-box;overflow:visible}
+dialog.modal-dialog[open]{display:flex;align-items:flex-end;justify-content:center;height:100%}
+@media (min-width:640px){dialog.modal-dialog[open]{align-items:center}}
+dialog::backdrop{background:rgba(17,17,17,0.3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transition:opacity 0.26s ease}
+dialog[open]::backdrop{opacity:1}
+.modal-panel{opacity:0;transform:translateY(28px);width:100%;max-width:32rem;background:#ffffff;border-radius:2rem;padding:1.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);border:1px solid #e6e5e2;transition:opacity 0.26s cubic-bezier(0.2,0.8,0.2,1),transform 0.26s cubic-bezier(0.2,0.8,0.2,1);position:relative}
+@media (min-width:640px){.modal-panel{padding:2rem}}
+.modal-open .modal-panel{opacity:1;transform:translateY(0)}
+.modal-closing .modal-panel{opacity:0;transform:translateY(18px)}
+.form-label{font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.025em;color:rgba(17,17,17,0.5)}
+#request-form input,#request-form textarea{width:100%;border:1px solid #e6e5e2;background:rgba(241,240,238,0.5);border-radius:0.875rem;padding:0.75rem 1rem;font-size:0.875rem;outline:none;box-sizing:border-box;font-family:inherit;color:#111;transition:border-color 0.2s,background-color 0.2s}
+#request-form input::placeholder,#request-form textarea::placeholder{color:rgba(17,17,17,0.4)}
+#request-form input:focus,#request-form textarea:focus{border-color:rgba(17,17,17,0.3);background:#fff}
+.reveal-fade-up{opacity:0;transform:translateY(var(--reveal-y,20px)) scale(var(--reveal-scale,1));transition:opacity var(--reveal-duration,0.8s) var(--reveal-ease,cubic-bezier(0.18,1,0.3,1)),transform var(--reveal-duration,0.8s) var(--reveal-ease,cubic-bezier(0.18,1,0.3,1))}
+.reveal-fade-up.revealed{opacity:var(--reveal-opacity,1);transform:translateY(0) scale(1)}
+.header-reveal{--reveal-y:-14px;--reveal-duration:0.7s;--reveal-ease:cubic-bezier(.22,1,.36,1)}
+.hero-eyebrow-reveal,.hero-rating-reveal,.hero-ctas-reveal{--reveal-y:10px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.hero-watermark-reveal{--reveal-y:20px;--reveal-opacity:0.4;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.hero-card-reveal{--reveal-y:16px;--reveal-scale:0.96;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.16,1,0.3,1)}
+.hero-partners-reveal{--reveal-y:14px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.hero-status-reveal{--reveal-y:0px;--reveal-duration:0.8s}
+.about-bottom-reveal,.about-footer-reveal{--reveal-y:12px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.create-pill-reveal{--reveal-y:28px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.portfolio-card-reveal{--reveal-y:48px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.16,1,0.3,1)}
+.services-row-reveal{--reveal-y:24px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.stats-panel-reveal{--reveal-y:40px;--reveal-scale:0.99;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.16,1,0.3,1)}
+.stats-item-reveal{--reveal-y:20px;--reveal-duration:0.8s;--reveal-ease:cubic-bezier(0.18,1,0.3,1)}
+.reveal-lines .line-outer{display:block;overflow:hidden}
+.reveal-lines .line-inner{display:inline-block;transform:translateY(100%);opacity:0;transition:transform 0.9s cubic-bezier(0.215,0.61,0.355,1),opacity 0.9s cubic-bezier(0.215,0.61,0.355,1)}
+.reveal-lines.revealed .line-inner{transform:translateY(0);opacity:1}
+.reveal-words .word-outer{display:inline-block;overflow:hidden;vertical-align:bottom}
+.reveal-words .word-inner{display:inline-block;transform:translateY(24px);opacity:0;transition:transform 0.7s cubic-bezier(0.165,0.84,0.44,1),opacity 0.7s cubic-bezier(0.165,0.84,0.44,1)}
+.reveal-words .word-inner.text-muted{color:var(--muted)}
+.reveal-words.revealed .word-inner{transform:translateY(0);opacity:1}
+@media (hover:hover){
+.pill-btn-wrap:hover{transform:scale(1.04)}
+.pill-btn-wrap:hover .pill-btn-icon-right{transform:translate(3px,0)}
+.pill-btn-wrap:hover .pill-btn-icon-upright{transform:translate(2px,-2px)}
+.animated-link:hover .animated-link-inner{opacity:1;transform:translateX(4px)}
+.legal-link:hover .animated-link-inner{opacity:1;transform:translateX(3px)}
+.brand-logo:hover{transform:scale(1.04)}
+.menu-btn:hover{background:rgba(255,255,255,0.7)}
+.menu-btn:hover .menu-btn-inner{transform:scale(1.05)}
+.nav-link:hover{opacity:1;transform:translateY(-2px)}
+.partner-item:hover{opacity:1;transform:translateY(-2px)}
+.create-tile-wrap:hover .create-tile{transform:scale(1.03)}
+.portfolio-card:hover{transform:translateY(-8px) scale(1.012)}
+.portfolio-card:hover .portfolio-badge{transform:rotate(45deg) scale(1.08)}
+.service-row:hover{background:rgba(241,240,238,1);padding-left:2rem;padding-right:1.25rem}
+.service-row:hover .service-badge{transform:translateX(5px)}
+.social-chip:hover{transform:scale(1.18)}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div id="page-loader">
+  <div id="loader-content">
+    <div class="loader-logo">
+      <svg style="width:1.875rem;height:1.875rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+      <span>Rayane</span>
+    </div>
+    <p class="loader-tagline">Bold ideas, shipped with quiet precision.</p>
+  </div>
+  <div class="loader-progress-wrap">
+    <div class="loader-track">
+      <div id="progress-fill"></div>
+    </div>
+    <div class="loader-status-row">
+      <span>Loading</span>
+      <span id="progress-num">000</span>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="reveal-on-ready reveal-fade-up header-reveal" data-delay="150">
+  <div class="shell header-container">
+    <button onclick="scrollToElement('home')" class="brand-logo" aria-label="Scroll to home">
+      <svg style="width:1.25rem;height:1.25rem;color:#b15f2c" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+      <span>Rayane</span>
+    </button>
+    <nav class="desktop-nav">
+      <ul>
+        <li><button onclick="scrollToElement('home')" class="nav-link" aria-current="page">Home</button></li>
+        <li><button onclick="scrollToElement('works')" class="nav-link">Work</button></li>
+        <li><button onclick="scrollToElement('services')" class="nav-link" style="display:inline-flex;align-items:center;gap:0.25rem">Services <span style="font-size:0.75rem;opacity:0.6;line-height:1">▾</span></button></li>
+        <li><button onclick="scrollToElement('about')" class="nav-link">Studio</button></li>
+        <li><button onclick="scrollToElement('careers-stub')" class="nav-link">Careers</button></li>
+        <li><button onclick="openContactModal()" class="nav-link">Contact</button></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <div class="clock-chip">
+        <span style="color:rgba(17,17,17,0.45)">Local time</span>
+        <span id="clock-time">9:41am</span>
+        <span style="color:rgba(17,17,17,0.3)">•</span>
+        <span id="clock-date">12 March, 2025</span>
+      </div>
+      <button id="menu-btn-trigger" class="menu-btn" aria-label="Open navigation menu">
+        <span class="menu-btn-inner">
+          <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <span class="menu-text-label">Menu</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="home">
+    <div class="liquid-container">
+      <img src="photo_base.jpg" alt="Rayane Studio Hero Background" class="liquid-base-img" fetchpriority="high" />
+      <canvas id="liquid-canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="legibility-vignette"></div>
+    <div class="hero-watermark reveal-on-ready reveal-fade-up hero-watermark-reveal" data-delay="300">RAYANE</div>
+    <div class="shell hero-content-grid">
+      <div class="hero-col-left">
+        <div class="reveal-on-ready reveal-fade-up hero-eyebrow-reveal" data-delay="200" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+          <span style="width:0.375rem;height:0.375rem;background:rgba(17,17,17,0.5);border-radius:9999px"></span>
+          <span>Independent Studio</span>
+        </div>
+        <h1 class="reveal-on-ready reveal-lines" data-delay="250" style="max-width:18ch;font-weight:600;line-height:0.98;letter-spacing:-0.02em">
+          <span class="line-outer"><span class="line-inner" style="transition-delay:250ms">Bold ideas,</span></span>
+          <span class="line-outer"><span class="line-inner" style="transition-delay:370ms">shipped with</span></span>
+          <span class="line-outer"><span class="line-inner" style="transition-delay:490ms">quiet precision</span></span>
+        </h1>
+        <div class="reveal-on-ready reveal-fade-up hero-rating-reveal" data-delay="650" style="display:flex;align-items:center;gap:0.75rem">
+          <span style="color:#b15f2c;display:flex;gap:0.125rem;font-size:1rem">
+            <svg style="width:1em;height:1em" viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46-5.8-3.05-5.8 3.05 1.1-6.46-4.69-4.58 6.49-.94L12 2.5z" fill="currentColor"/></svg>
+            <svg style="width:1em;height:1em" viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46-5.8-3.05-5.8 3.05 1.1-6.46-4.69-4.58 6.49-.94L12 2.5z" fill="currentColor"/></svg>
+            <svg style="width:1em;height:1em" viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46-5.8-3.05-5.8 3.05 1.1-6.46-4.69-4.58 6.49-.94L12 2.5z" fill="currentColor"/></svg>
+            <svg style="width:1em;height:1em" viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46-5.8-3.05-5.8 3.05 1.1-6.46-4.69-4.58 6.49-.94L12 2.5z" fill="currentColor"/></svg>
+            <svg style="width:1em;height:1em" viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46-5.8-3.05-5.8 3.05 1.1-6.46-4.69-4.58 6.49-.94L12 2.5z" fill="currentColor"/></svg>
+          </span>
+          <span style="font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">200+ brands shipped</span>
+        </div>
+        <div class="reveal-on-ready reveal-fade-up hero-ctas-reveal" data-delay="750" style="display:flex;flex-wrap:wrap;gap:0.75rem">
+          <div class="pill-btn-wrap">
+            <button onclick="openContactModal()" class="pill-btn dark" style="padding:0.375rem 0.375rem 0.375rem 1.5rem">
+              <span>Let's Talk</span>
+              <span class="pill-btn-badge" style="background:#fff;color:#0a0a0a">
+                <svg class="pill-btn-icon pill-btn-icon-right" style="width:1rem;height:1rem" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </button>
+          </div>
+          <div class="pill-btn-wrap">
+            <button onclick="scrollToElement('works')" class="pill-btn outline" style="padding:0.875rem 1.75rem">
+              <span>View Work</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-col-right">
+        <div id="hero-carousel-card" class="reveal-on-ready reveal-fade-up hero-card-reveal" data-delay="400">
+          <div style="display:flex;gap:0.5rem;cursor:pointer;border-radius:0.875rem">
+            <div style="aspect-ratio:1;width:6rem;display:grid;place-items:center;border-radius:0.875rem;background:#0a0a0a;color:#fff;flex-shrink:0">
+              <svg style="width:1.875rem;height:1.875rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+            </div>
+            <div style="flex:1;border-radius:0.875rem;background:rgba(241,240,238,0.7);padding:0.75rem;display:flex;flex-direction:column;justify-content:space-between">
+              <div class="carousel-track">
+                <div class="carousel-item active" data-index="0">
+                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Conversion design</div>
+                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Crafted to convert.</div>
+                </div>
+                <div class="carousel-item next" data-index="1">
+                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Engineering</div>
+                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Built to scale.</div>
+                </div>
+                <div class="carousel-item next" data-index="2">
+                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Brand systems</div>
+                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Designed to last.</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem">
+                <div style="display:flex;gap:0.25rem">
+                  <div class="carousel-dash active"></div>
+                  <div class="carousel-dash"></div>
+                  <div class="carousel-dash"></div>
+                </div>
+                <div style="display:flex;gap:0.375rem">
+                  <button id="carousel-prev" aria-label="Previous slide">
+                    <svg style="width:0.75rem;height:0.75rem;transform:rotate(180deg)" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                  </button>
+                  <button id="carousel-next" aria-label="Next slide">
+                    <svg style="width:0.75rem;height:0.75rem" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="hero-partners-block" class="reveal-on-ready reveal-fade-up hero-partners-reveal" data-delay="550">
+          <div class="partners-label" style="margin-bottom:0.75rem;font-size:0.75rem;font-weight:500;color:rgba(17,17,17,0.45)">Trusted by</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);column-gap:1rem;row-gap:0.75rem">
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Kaido</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Northpeak</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Vellum</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Orbit</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Brightline</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Cobalt</span>
+            <span class="partner-item"><svg class="partner-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg> Mesa</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="hero-status-bar" class="reveal-on-ready reveal-fade-up hero-status-reveal" data-delay="900" style="border-top:1px solid rgba(17,17,17,0.1);padding:1.25rem 0;width:100%;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.025em;color:rgba(17,17,17,0.6)">
+        <div>Working since 2014</div>
+        <div class="status-center-text">Remote-first, worldwide</div>
+        <div style="display:inline-flex;align-items:center;gap:0.5rem">
+          <span>Scroll to explore</span>
+          <span>↓</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background:#fff">
+    <div class="shell" style="display:grid;grid-template-columns:1fr;align-items:center;gap:3rem;padding:5rem 1.25rem" class="about-container">
+      <div style="position:relative;min-height:14rem" class="about-globe-col">
+        <svg class="about-globe-bg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          <path d="M12 2.75c2.6 2.3 4 5.8 4 9.25s-1.4 6.95-4 9.25c-2.6-2.3-4-5.8-4-9.25s1.4-6.95 4-9.25zM2.75 12h18.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        </svg>
+        <div class="reveal-scroll reveal-fade-up hero-eyebrow-reveal" style="position:relative;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+          <span style="width:0.375rem;height:0.375rem;background:rgba(17,17,17,0.5);border-radius:9999px"></span>
+          <span>The Studio</span>
+        </div>
+        <div class="reveal-scroll reveal-fade-up about-bottom-reveal" data-delay="200" style="position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;color:rgba(17,17,17,0.7)">
+          <svg style="width:1.5rem;height:1.5rem;color:#111;flex-shrink:0" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <path d="M12 2.75c2.6 2.3 4 5.8 4 9.25s-1.4 6.95-4 9.25c-2.6-2.3-4-5.8-4-9.25s1.4-6.95 4-9.25zM2.75 12h18.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+          </svg>
+          <span style="max-width:14rem;line-height:1.4">A distributed team building across every time zone.</span>
+        </div>
+      </div>
+      
+      <div style="display:flex;flex-direction:column;gap:2.5rem">
+        <h2 class="reveal-scroll reveal-words text-h2-about" style="font-weight:500;line-height:1.35;letter-spacing:-0.01em">
+          We partner with ambitious teams to ship digital products, brand systems, and the strategy that holds them together.
+        </h2>
+        <div class="reveal-scroll reveal-fade-up about-footer-reveal" data-delay="200" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;border-top:1px solid #e6e5e2;padding-top:1.5rem">
+          <div style="display:flex;flex-direction:column;gap:0.5rem">
+            <div style="font-size:0.875rem;color:rgba(17,17,17,0.45)">Find us online</div>
+            <div style="display:flex;gap:0.5rem">
+              <a href="#" class="social-chip" style="background:#b15f2c;color:#fff" aria-label="X (formerly Twitter)">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </a>
+              <a href="#" class="social-chip" style="background:#f1f0ee;color:rgba(17,17,17,0.7)" aria-label="Behance">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
+              </a>
+              <a href="#" class="social-chip" style="background:#f1f0ee;color:rgba(17,17,17,0.7)" aria-label="Dribbble">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="pill-btn-wrap">
+            <a href="#about" class="pill-btn outline" style="padding:0.375rem 0.375rem 0.375rem 1.5rem">
+              <span>About Us</span>
+              <span class="pill-btn-badge" style="background:#0a0a0a;color:#fff">
+                <svg class="pill-btn-icon pill-btn-icon-right" style="width:1rem;height:1rem" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fff">
+    <ul class="shell reveal-scroll reveal-group" data-stagger="120" style="display:flex;flex-direction:column;gap:0.75rem;padding:2.5rem 1.25rem">
+      <li class="reveal-item reveal-fade-up create-pill-reveal create-tile-wrap">
+        <div class="create-tile" style="background:#f1f0ee;color:#111">We</div>
+      </li>
+      <li class="reveal-item reveal-fade-up create-pill-reveal create-tile-wrap">
+        <div class="create-tile" style="background:linear-gradient(to bottom right,#cf8047,#97501f);color:#fff">Build</div>
+      </li>
+      <li class="reveal-item reveal-fade-up create-pill-reveal create-tile-wrap">
+        <div class="create-tile" style="background:#0a0a0a;color:#fff">
+          <svg style="width:2.25rem;height:2.25rem" class="arrow-tile-icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </div>
+      </li>
+      <li class="reveal-item reveal-fade-up create-pill-reveal create-tile-wrap">
+        <div class="create-tile" style="background:rgba(241,240,238,0.6);color:rgba(17,17,17,0.35)">Better</div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="works" style="background:#fff">
+    <div class="shell" style="padding:2.5rem 1.25rem 5rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem">
+      <div class="reveal-scroll reveal-fade-up hero-eyebrow-reveal" style="border:1px solid #e6e5e2;border-radius:9999px;padding:0.375rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+        <span style="width:0.375rem;height:0.375rem;background:rgba(17,17,17,0.5);border-radius:9999px"></span>
+        <span>Portfolio</span>
+      </div>
+      <h2 class="reveal-scroll reveal-lines text-h2-portfolio" data-delay="120" style="font-weight:600;letter-spacing:-0.02em;text-align:center;margin-bottom:2rem">
+        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">Selected Work</span></span>
+      </h2>
+      <ul class="reveal-scroll reveal-group" data-stagger="90" style="display:grid;grid-template-columns:1fr;gap:1.5rem;width:100%" class="portfolio-cards-grid">
+        <li class="reveal-item reveal-fade-up portfolio-card-reveal">
+          <a href="#" class="portfolio-card-link">
+            <article class="portfolio-card">
+              <div class="portfolio-meta">
+                <span>Branding — 2025</span>
+                <span class="portfolio-badge">
+                  <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                </span>
+              </div>
+              <div class="portfolio-watermark">
+                <svg style="width:4.5rem;height:4.5rem;color:rgba(255,255,255,0.9)" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+                <span class="portfolio-reg">®</span>
+              </div>
+              <div class="portfolio-info">
+                <h3>Aster Labs</h3>
+                <p>A complete identity and go-to-market system for a fast-moving research startup.</p>
+                <div class="portfolio-tags">
+                  <span class="tag-chip">Branding</span>
+                  <span class="tag-chip">Strategy</span>
+                  <span class="tag-chip">Design</span>
+                </div>
+              </div>
+            </article>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up portfolio-card-reveal">
+          <a href="#" class="portfolio-card-link">
+            <article class="portfolio-card">
+              <div class="portfolio-meta">
+                <span>Product — 2024</span>
+                <span class="portfolio-badge">
+                  <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                </span>
+              </div>
+              <div class="portfolio-watermark">
+                <svg style="width:4.5rem;height:4.5rem;color:rgba(255,255,255,0.9)" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+                <span class="portfolio-reg">®</span>
+              </div>
+              <div class="portfolio-info">
+                <h3>Nova Finance</h3>
+                <p>A finance platform reimagined — clear data, calm interfaces, and effortless flows.</p>
+                <div class="portfolio-tags">
+                  <span class="tag-chip">Product Design</span>
+                  <span class="tag-chip">Web App</span>
+                  <span class="tag-chip">QA</span>
+                </div>
+              </div>
+            </article>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up portfolio-card-reveal">
+          <a href="#" class="portfolio-card-link">
+            <article class="portfolio-card">
+              <div class="portfolio-meta">
+                <span>Identity — 2023</span>
+                <span class="portfolio-badge">
+                  <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                </span>
+              </div>
+              <div class="portfolio-watermark">
+                <svg style="width:4.5rem;height:4.5rem;color:rgba(255,255,255,0.9)" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+                <span class="portfolio-reg">®</span>
+              </div>
+              <div class="portfolio-info">
+                <h3>Helio Studio</h3>
+                <p>A bold visual identity and art direction system built to scale across every surface.</p>
+                <div class="portfolio-tags">
+                  <span class="tag-chip">Brand Identity</span>
+                  <span class="tag-chip">Art Direction</span>
+                </div>
+              </div>
+            </article>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up portfolio-card-reveal">
+          <a href="#" class="portfolio-card-link">
+            <article class="portfolio-card">
+              <div class="portfolio-meta">
+                <span>Mobile — 2023</span>
+                <span class="portfolio-badge">
+                  <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                </span>
+              </div>
+              <div class="portfolio-watermark">
+                <svg style="width:4.5rem;height:4.5rem;color:rgba(255,255,255,0.9)" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+                <span class="portfolio-reg">®</span>
+              </div>
+              <div class="portfolio-info">
+                <h3>Pulse Health</h3>
+                <p>A wellness app grounded in research, shipped end to end from concept to release.</p>
+                <div class="portfolio-tags">
+                  <span class="tag-chip">Mobile App</span>
+                  <span class="tag-chip">UX Research</span>
+                  <span class="tag-chip">Development</span>
+                </div>
+              </div>
+            </article>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="services" style="background:#fff">
+    <div class="shell" style="padding:5rem 1.25rem;display:flex;flex-direction:column;gap:0.5rem">
+      <div class="reveal-scroll reveal-fade-up hero-eyebrow-reveal" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+        <span style="width:0.375rem;height:0.375rem;background:rgba(17,17,17,0.5);border-radius:9999px"></span>
+        <span>Services</span>
+      </div>
+      <h2 class="reveal-scroll reveal-lines text-h2-services" data-delay="120" style="font-weight:600;letter-spacing:-0.02em;margin-top:1.25rem;margin-bottom:3rem;max-width:16ch">
+        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">What we do best</span></span>
+      </h2>
+      <ul class="reveal-scroll reveal-group" data-stagger="80" style="display:flex;flex-direction:column;width:100%">
+        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-bottom:1px solid #e6e5e2">
+          <a href="#services" style="display:block">
+            <div class="service-row">
+              <div class="service-index">01</div>
+              <h3 class="service-title">Software Development</h3>
+              <p class="service-desc">Scalable web & mobile products built to last.</p>
+              <span class="service-badge">
+                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </div>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;border-bottom:1px solid #e6e5e2;margin-top:-1px">
+          <a href="#services" style="display:block">
+            <div class="service-row">
+              <div class="service-index">02</div>
+              <h3 class="service-title">Product Design</h3>
+              <p class="service-desc">Interfaces that feel effortless and look sharp.</p>
+              <span class="service-badge">
+                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </div>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;border-bottom:1px solid #e6e5e2;margin-top:-1px">
+          <a href="#services" style="display:block">
+            <div class="service-row">
+              <div class="service-index">03</div>
+              <h3 class="service-title">Quality Assurance</h3>
+              <p class="service-desc">Rigorous testing for flawless, confident releases.</p>
+              <span class="service-badge">
+                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </div>
+          </a>
+        </li>
+        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;margin-top:-1px">
+          <a href="#services" style="display:block">
+            <div class="service-row">
+              <div class="service-index">04</div>
+              <h3 class="service-title">Consulting</h3>
+              <p class="service-desc">Strategy and direction for ambitious teams.</p>
+              <span class="service-badge">
+                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="background:#fff">
+    <div class="shell" style="padding:0 1.25rem 5rem">
+      <div class="reveal-scroll reveal-fade-up stats-panel-reveal" data-delay="180" style="border-radius:2rem;background:#0a0a0a;padding:3rem 1.5rem;color:#fff">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.7)">
+          <span style="width:0.375rem;height:0.375rem;background:rgba(255,255,255,0.6);border-radius:9999px"></span>
+          <span>By the numbers</span>
+        </div>
+        <h2 class="reveal-scroll reveal-lines text-h2-stats" data-delay="120" style="margin-top:1rem;max-width:20ch;font-weight:500;letter-spacing:-0.01em;color:#fff">
+          <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">Proof in the work, not the words.</span></span>
+        </h2>
+        <ul class="reveal-scroll reveal-group" data-stagger="90" style="margin-top:3.5rem;display:grid;grid-template-columns:repeat(2,1fr);column-gap:2rem;row-gap:3rem" id="stats-grid">
+          <li class="reveal-item reveal-fade-up stats-item-reveal stat-item" data-target="150">
+            <div class="stat-number-wrap">
+              <span class="stat-count">0</span><span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Projects delivered</div>
+          </li>
+          <li class="reveal-item reveal-fade-up stats-item-reveal stat-item" data-target="98">
+            <div class="stat-number-wrap">
+              <span class="stat-count">0</span><span class="stat-suffix">%</span>
+            </div>
+            <div class="stat-label">Client retention</div>
+          </li>
+          <li class="reveal-item reveal-fade-up stats-item-reveal stat-item" data-target="12">
+            <div class="stat-number-wrap">
+              <span class="stat-count">0</span>
+            </div>
+            <div class="stat-label">Years of craft</div>
+          </li>
+          <li class="reveal-item reveal-fade-up stats-item-reveal stat-item" data-target="40">
+            <div class="stat-number-wrap">
+              <span class="stat-count">0</span><span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Team members</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="position:relative;overflow:hidden;border-radius:2rem 2rem 0 0;background:#0a0a0a;color:#fff">
+  <div class="shell" style="position:relative;z-index:10;padding:5rem 1.25rem 2.5rem">
+    <div style="display:flex;flex-direction:column;gap:2rem;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:4rem" class="footer-cta-row">
+      <h2 class="reveal-scroll reveal-lines text-h2-footer-cta" data-delay="100" style="max-width:16ch;font-weight:600;letter-spacing:-0.02em;color:#fff">
+        <span class="line-outer"><span class="line-inner" style="transition-delay:100ms">Have a project in mind?</span></span>
+        <span class="line-outer"><span class="line-inner" style="transition-delay:200ms">Let's get to work.</span></span>
+      </h2>
+      <div class="pill-btn-wrap">
+        <button onclick="openContactModal()" class="pill-btn light" style="padding:0.375rem 0.375rem 0.375rem 1.5rem">
+          <span>Start a project</span>
+          <span class="pill-btn-badge" style="background:#0a0a0a;color:#fff">
+            <svg class="pill-btn-icon pill-btn-icon-upright" style="width:1rem;height:1rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="footer-cols-grid" style="display:grid;grid-template-columns:1fr;gap:3rem;padding-block:4rem">
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:1.125rem;font-weight:600">
+          <svg style="width:1.25rem;height:1.25rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+          <span>Rayane</span>
+        </div>
+        <p style="max-width:20rem;font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.45">
+          An independent studio crafting brands, products, and the systems that connect them.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="footer-col-title">Company</div>
+        <ul style="display:flex;flex-direction:column;gap:0.75rem">
+          <li><a href="#about" class="animated-link"><span class="animated-link-inner">About</span></a></li>
+          <li><a href="#careers-stub" class="animated-link"><span class="animated-link-inner">Careers</span></a></li>
+          <li><a href="#partners" class="animated-link"><span class="animated-link-inner">Partners</span></a></li>
+          <li><button onclick="openContactModal()" class="animated-link"><span class="animated-link-inner">Contact</span></button></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="footer-col-title">Services</div>
+        <ul style="display:flex;flex-direction:column;gap:0.75rem">
+          <li><a href="#services" class="animated-link"><span class="animated-link-inner">Development</span></a></li>
+          <li><a href="#services" class="animated-link"><span class="animated-link-inner">Design</span></a></li>
+          <li><a href="#services" class="animated-link"><span class="animated-link-inner">Quality Assurance</span></a></li>
+          <li><a href="#services" class="animated-link"><span class="animated-link-inner">Consulting</span></a></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="footer-col-title">Social</div>
+        <ul style="display:flex;flex-direction:column;gap:0.75rem">
+          <li><a href="#" class="animated-link"><span class="animated-link-inner">X / Twitter</span></a></li>
+          <li><a href="#" class="animated-link"><span class="animated-link-inner">Behance</span></a></li>
+          <li><a href="#" class="animated-link"><span class="animated-link-inner">Dribbble</span></a></li>
+          <li><a href="#" class="animated-link"><span class="animated-link-inner">LinkedIn</span></a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-legal-bar" style="display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;font-size:0.75rem;color:rgba(255,255,255,0.45)">
+      <div>© 2025 Rayane Studio. All rights reserved.</div>
+      <div style="display:flex;gap:1.5rem">
+        <a href="#privacy" class="animated-link legal-link"><span class="animated-link-inner">Privacy</span></a>
+        <a href="#terms" class="animated-link legal-link"><span class="animated-link-inner">Terms</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-watermark">RAYANE</div>
+</footer>
+
+<dialog id="nav-menu" class="nav-dialog" closedby="any" aria-label="Navigation Menu">
+  <div class="nav-panel">
+    <div class="shell" style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem">
+      <div style="display:flex;align-items:center;gap:0.5rem;font-size:1.125rem;font-weight:600">
+        <svg style="width:1.25rem;height:1.25rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+        <span>Rayane</span>
+      </div>
+      <button id="nav-close-btn" class="nav-close-btn" style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:0.875rem;padding:0.5rem 1rem;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(255,255,255,0.7);transition:all 0.2s" aria-label="Close menu">
+        <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <span>Close</span>
+      </button>
+    </div>
+    <div class="shell" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 1.25rem">
+      <ul style="display:flex;flex-direction:column;gap:0.25rem">
+        <li class="nav-item"><button onclick="scrollToFromMenu('home')" class="nav-menu-btn-item"><span class="nav-menu-idx">01</span><span class="nav-menu-label">Home</span></button></li>
+        <li class="nav-item"><button onclick="scrollToFromMenu('works')" class="nav-menu-btn-item"><span class="nav-menu-idx">02</span><span class="nav-menu-label">Work</span></button></li>
+        <li class="nav-item"><button onclick="scrollToFromMenu('services')" class="nav-menu-btn-item"><span class="nav-menu-idx">03</span><span class="nav-menu-label">Services</span></button></li>
+        <li class="nav-item"><button onclick="scrollToFromMenu('about')" class="nav-menu-btn-item"><span class="nav-menu-idx">04</span><span class="nav-menu-label">Studio</span></button></li>
+        <li class="nav-item"><button onclick="scrollToFromMenu('careers-stub')" class="nav-menu-btn-item"><span class="nav-menu-idx">05</span><span class="nav-menu-label">Careers</span></button></li>
+        <li class="nav-item"><button onclick="scrollToFromMenu('contact')" class="nav-menu-btn-item"><span class="nav-menu-idx">06</span><span class="nav-menu-label">Contact</span></button></li>
+      </ul>
+    </div>
+    <div class="shell nav-menu-bottom" style="display:flex;flex-direction:column;gap:0.75rem;border-top:1px solid rgba(255,255,255,0.1);padding:1.5rem 1.25rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.025em;color:rgba(255,255,255,0.45)">
+      <div>Local time — <span id="nav-clock-time">9:41am</span></div>
+      <button onclick="scrollToFromMenu('contact')" style="text-align:left;color:rgba(255,255,255,0.7);transition:all 0.2s" class="nav-start-btn">Start a project →</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="request-modal" class="modal-dialog" closedby="any" aria-labelledby="modal-title">
+  <div class="modal-panel">
+    <button id="modal-close-btn" style="position:absolute;right:1rem;top:1rem;width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:9999px;background:#f1f0ee;color:rgba(17,17,17,0.6);transition:all 0.2s" aria-label="Close modal">
+      <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+    <div id="modal-form-state" style="display:flex;flex-direction:column;width:100%">
+      <div style="margin-bottom:1.5rem;display:flex;flex-direction:column;gap:0.375rem">
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17, 17, 17, 0.6)">
+          <span style="width:0.375rem;height:0.375rem;background:#b15f2c;border-radius:9999px"></span>
+          <span>Start a project</span>
+        </div>
+        <h2 id="modal-title" style="font-size:1.5rem;font-weight:600;letter-spacing:-0.01em;color:#111" class="sm:text-3xl">Tell us what you're building.</h2>
+      </div>
+      <form id="request-form" style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;flex-direction:column;gap:0.375rem">
+          <label for="form-name" class="form-label">Name</label>
+          <input type="text" id="form-name" name="name" required placeholder="Your name" autocomplete="name">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem">
+          <label for="form-email" class="form-label">Email</label>
+          <input type="email" id="form-email" name="email" required placeholder="you@company.com" autocomplete="email" inputmode="email">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.375rem">
+          <label for="form-project" class="form-label">Project</label>
+          <textarea id="form-project" name="project" rows="4" required placeholder="A few words about your project, timeline, and budget." style="resize:none"></textarea>
+        </div>
+        <div style="margin-top:0.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap" class="form-bottom-row">
+          <div style="font-size:0.75rem;color:rgba(17,17,17,0.45)">We reply within one business day.</div>
+          <div class="pill-btn-wrap">
+            <button id="submit-btn" type="submit" class="pill-btn dark" style="padding:0.375rem 0.375rem 0.375rem 1.5rem">
+              <span id="submit-btn-text">Send request</span>
+              <span class="pill-btn-badge" style="background:#fff;color:#0a0a0a">
+                <svg class="pill-btn-icon pill-btn-icon-upright" style="width:1rem;height:1rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="modal-success-state" style="display:none;flex-direction:column;align-items:center;text-align:center;padding-top:2rem;padding-bottom:2rem;gap:1rem;width:100%">
+      <div style="width:3.5rem;height:3.5rem;display:grid;place-items:center;border-radius:9999px;background:#0a0a0a;color:#cf8047;font-size:1.5rem;flex-shrink:0">
+        <svg style="width:1.875rem;height:1.875rem" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+      </div>
+      <h2 style="font-size:1.5rem;font-weight:600;color:#111">Request received</h2>
+      <p style="max-width:32ch;font-size:0.875rem;color:rgba(17,17,17,0.6);line-height:1.45">
+        Thanks for reaching out — we'll get back to you within one business day.
+      </p>
+      <div class="pill-btn-wrap" style="margin-top:0.5rem">
+        <button id="success-close-btn" class="pill-btn dark" style="padding:0.875rem 1.75rem">
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script type="importmap">
+{ "imports": { "lenis": "https://unpkg.com/lenis@1.3.23/dist/lenis.mjs" } }
+</script>
+<script type="module">
+import Lenis from 'lenis';
+window.scrollTo(0,0);
+const lenis = new Lenis({smoothWheel:true});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+requestAnimationFrame(raf);
+
+let scrollEnabled = true;
+function stopScroll(){
+if(!scrollEnabled)return;
+scrollEnabled = false;
+lenis.stop();
+document.documentElement.style.position = 'relative';
+document.documentElement.style.overflow = 'hidden';
+document.documentElement.style.height = '100%';
+document.body.style.position = 'relative';
+document.body.style.overflow = 'hidden';
+document.body.style.height = '100%';
+}
+function startScroll(){
+if(scrollEnabled)return;
+scrollEnabled = true;
+lenis.start();
+document.documentElement.style.removeProperty('position');
+document.documentElement.style.removeProperty('overflow');
+document.documentElement.style.removeProperty('height');
+document.body.style.removeProperty('position');
+document.body.style.removeProperty('overflow');
+document.body.style.removeProperty('height');
+}
+
+window.scrollToElement = function(id){
+const el = document.getElementById(id);
+if(!el)return;
+const prev = scrollEnabled;
+if(prev){
+lenis.stop();
+scrollEnabled = false;
+}
+setTimeout(()=>{
+const rect = el.getBoundingClientRect();
+const top = rect.top + window.pageYOffset;
+window.scrollTo({top:top,behavior:'smooth'});
+},50);
+setTimeout(()=>{
+if(prev){
+lenis.start();
+scrollEnabled = true;
+}
+},100);
+};
+
+function applyAdaptiveGrid(){
+const FONT_BASE = 16, baseWidth = 1920, coef = 0.6666;
+const w = window.innerWidth;
+const widthReduction = ((baseWidth - w) / baseWidth) * 100;
+const size = FONT_BASE - (FONT_BASE * (widthReduction * coef)) / 100;
+if (size > FONT_BASE) document.documentElement.style.fontSize = size + 'px';
+else document.documentElement.style.removeProperty('font-size');
+}
+applyAdaptiveGrid();
+addEventListener('resize', applyAdaptiveGrid);
+
+const timeElement = document.getElementById('clock-time');
+const dateElement = document.getElementById('clock-date');
+function updateClock(){
+const now = new Date();
+let hours = now.getHours();
+const minutes = now.getMinutes();
+const ampm = hours >= 12 ? 'pm' : 'am';
+hours = hours % 12;
+hours = hours ? hours : 12;
+const minutesStr = String(minutes).padStart(2,'0');
+const timeStr = `${hours}:${minutesStr}${ampm}`;
+const day = now.getDate();
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const monthStr = months[now.getMonth()];
+const year = now.getFullYear();
+const dateStr = `${day} ${monthStr}, ${year}`;
+if(timeElement)timeElement.textContent = timeStr;
+if(dateElement)dateElement.textContent = dateStr;
+}
+updateClock();
+setInterval(updateClock,1000);
+
+const loader = document.getElementById('page-loader');
+const loaderContent = document.getElementById('loader-content');
+const progressFill = document.getElementById('progress-fill');
+const progressNum = document.getElementById('progress-num');
+stopScroll();
+let startTimestamp = null;
+const FILL_MS = 1300;
+function easeInOutCubic(t){return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2}
+function updateLoader(timestamp){
+if(!startTimestamp)startTimestamp = timestamp;
+const elapsed = timestamp - startTimestamp;
+const t = Math.min(elapsed / FILL_MS,1);
+const progress = Math.round(easeInOutCubic(t) * 100);
+progressFill.style.width = progress + '%';
+progressNum.textContent = String(progress).padStart(3,'0');
+if(t < 1){
+requestAnimationFrame(updateLoader);
+}else{
+exitLoader();
+}
+}
+function exitLoader(){
+loaderContent.style.transition = 'opacity 0.7s cubic-bezier(0.26,0.8,0.26,1),transform 0.7s cubic-bezier(0.26,0.8,0.26,1)';
+loaderContent.style.opacity = '0';
+loaderContent.style.transform = 'translateY(-12px)';
+loader.style.transition = 'transform 0.7s cubic-bezier(0.22,1,0.36,1)';
+loader.style.transform = 'translateY(-100%)';
+loader.addEventListener('transitionend',(e)=>{
+if(e.target === loader && e.propertyName === 'transform'){
+loader.remove();
+startScroll();
+window.dispatchEvent(new Event('rayane-ready'));
+}
+});
+}
+requestAnimationFrame(updateLoader);
+
+const container = document.getElementById('home');
+const mainCanvas = document.getElementById('liquid-canvas');
+const mainCtx = mainCanvas.getContext('2d');
+const brushRadius = 143;
+const decay = 0.016;
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+const radius = brushRadius * dpr;
+const diameter = Math.ceil(radius * 2);
+
+const brushCanvas = document.createElement('canvas');
+brushCanvas.width = diameter;
+brushCanvas.height = diameter;
+const brushCtx = brushCanvas.getContext('2d');
+
+const coverCanvas = document.createElement('canvas');
+const coverCtx = coverCanvas.getContext('2d');
+
+const afterImage = new Image();
+let afterImageLoaded = false;
+afterImage.onload = () => {
+afterImageLoaded = true;
+updateCoverCanvas();
+};
+afterImage.src = 'photo_effet.jpg';
+
+function drawImageProp(ctx, img, x, y, w, h) {
+const iw = img.width, ih = img.height;
+const r = Math.min(w / iw, h / ih);
+let nw = iw * r, nh = ih * r;
+let cx, cy, cw, ch, ar = 1;
+if(nw < w) ar = w / nw;
+if(Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
+nw *= ar; nh *= ar;
+cw = iw / (nw / w); ch = ih / (nh / h);
+cx = (iw - cw) * 0.5; cy = (ih - ch) * 0.5;
+ctx.drawImage(img, cx < 0 ? 0 : cx, cy < 0 ? 0 : cy, cw > iw ? iw : cw, ch > ih ? ih : ch, x, y, w, h);
+}
+
+function updateCoverCanvas() {
+coverCanvas.width = mainCanvas.width;
+coverCanvas.height = mainCanvas.height;
+if(afterImageLoaded){
+drawImageProp(coverCtx, afterImage, 0, 0, coverCanvas.width, coverCanvas.height);
+}
+}
+
+const resizeObserver = new ResizeObserver((entries) => {
+for (let entry of entries) {
+const { width, height } = entry.contentRect;
+mainCanvas.width = width * dpr;
+mainCanvas.height = height * dpr;
+updateCoverCanvas();
+}
+});
+resizeObserver.observe(container);
+
+let lastX = null, lastY = null;
+let pointsQueue = [];
+let drawing = false;
+
+window.addEventListener('pointermove', (e) => {
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+if(!afterImageLoaded) return;
+const rect = container.getBoundingClientRect();
+const x = (e.clientX - rect.left) * dpr;
+const y = (e.clientY - rect.top) * dpr;
+const padding = radius;
+if(e.clientX < rect.left - padding || e.clientX > rect.right + padding || e.clientY < rect.top - padding || e.clientY > rect.bottom + padding){
+lastX = null; lastY = null; drawing = false; return;
+}
+drawing = true;
+idleCount = 0;
+if(lastX === null || lastY === null){
+pointsQueue.push({x, y});
+}else{
+const dx = x - lastX, dy = y - lastY;
+const dist = Math.hypot(dx, dy);
+const step = Math.max(radius * 0.3, 1);
+const stepsCount = Math.min(Math.ceil(dist / step), 60);
+for (let i = 1; i <= stepsCount; i++) {
+const ratio = i / stepsCount;
+pointsQueue.push({x: lastX + dx * ratio, y: lastY + dy * ratio});
+}
+}
+lastX = x; lastY = y;
+});
+
+window.addEventListener('pointerleave', () => {
+lastX = null; lastY = null; drawing = false;
+});
+
+function stamp(x, y) {
+brushCtx.clearRect(0, 0, diameter, diameter);
+brushCtx.globalCompositeOperation = 'source-over';
+const grad = brushCtx.createRadialGradient(radius, radius, 0, radius, radius, radius);
+grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+grad.addColorStop(0.55, 'rgba(255, 255, 255, 0.82)');
+grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+brushCtx.fillStyle = grad;
+brushCtx.beginPath();
+brushCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+brushCtx.fill();
+brushCtx.globalCompositeOperation = 'source-in';
+brushCtx.drawImage(coverCanvas, x - radius, y - radius, diameter, diameter, 0, 0, diameter, diameter);
+mainCtx.globalCompositeOperation = 'source-over';
+mainCtx.drawImage(brushCanvas, x - radius, y - radius);
+}
+
+let idleCount = 0;
+function tick() {
+requestAnimationFrame(tick);
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+if(pointsQueue.length > 0){
+idleCount = 0;
+}else{
+idleCount++;
+if(idleCount > 120){
+if(idleCount === 121){
+mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+}
+return;
+}
+}
+const fade = drawing ? decay : Math.min(decay + idleCount * 0.004, 0.5);
+mainCtx.globalCompositeOperation = 'destination-out';
+mainCtx.fillStyle = `rgba(0, 0, 0, ${fade})`;
+mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+if(pointsQueue.length > 0){
+pointsQueue.forEach(pt => stamp(pt.x, pt.y));
+pointsQueue = [];
+}
+}
+requestAnimationFrame(tick);
+
+const carouselItems = document.querySelectorAll('.carousel-item');
+const dashIndicators = document.querySelectorAll('.carousel-dash');
+const prevBtn = document.getElementById('carousel-prev');
+const nextBtn = document.getElementById('carousel-next');
+const carouselCard = document.getElementById('hero-carousel-card');
+let carouselIndex = 0;
+const carouselTotal = carouselItems.length;
+let autoCycleTimer = null;
+
+function showSlide(index, direction = 'next') {
+carouselItems.forEach((item, i) => {
+item.className = 'carousel-item';
+if(i === index){
+item.classList.add('active');
+}else if(i === carouselIndex){
+item.classList.add(direction === 'next' ? 'exit-to-top' : 'exit-to-bottom');
+}else{
+item.classList.add(direction === 'next' ? 'enter-from-bottom' : 'enter-from-top');
+}
+});
+dashIndicators.forEach((dash, idx) => {
+dash.classList.toggle('active', idx === index);
+});
+carouselIndex = index;
+}
+
+function nextSlide() {
+showSlide((carouselIndex + 1) % carouselTotal, 'next');
+}
+function prevSlide() {
+showSlide((carouselIndex - 1 + carouselTotal) % carouselTotal, 'prev');
+}
+
+prevBtn.addEventListener('click', (e) => {
+e.stopPropagation(); prevSlide(); resetAutoCycle();
+});
+nextBtn.addEventListener('click', (e) => {
+e.stopPropagation(); nextSlide(); resetAutoCycle();
+});
+carouselCard.addEventListener('click', () => {
+nextSlide(); resetAutoCycle();
+});
+function startAutoCycle() { autoCycleTimer = setInterval(nextSlide, 4000); }
+function resetAutoCycle() { clearInterval(autoCycleTimer); startAutoCycle(); }
+showSlide(0);
+startAutoCycle();
+
+const wordsNormal = "We partner with ambitious teams to ship".split(' ');
+const wordsMuted = "digital products, brand systems, and the strategy that holds them together.".split(' ');
+const aboutHeading = document.querySelector('.reveal-words');
+if (aboutHeading) {
+let html = '';
+let totalIdx = 0;
+wordsNormal.forEach(word => {
+html += `<span class="word-outer"><span class="word-inner" style="transition-delay:${totalIdx * 35}ms">${word}</span></span> `;
+totalIdx++;
+});
+wordsMuted.forEach(word => {
+html += `<span class="word-outer"><span class="word-inner text-muted" style="transition-delay:${totalIdx * 35}ms">${word}</span></span> `;
+totalIdx++;
+});
+aboutHeading.innerHTML = html.trim();
+}
+
+window.addEventListener('rayane-ready', () => {
+document.body.classList.add('ready');
+document.querySelectorAll('#home .reveal-on-ready').forEach((el) => {
+const delay = parseInt(el.dataset.delay || 0, 10);
+setTimeout(() => {
+el.classList.add('revealed');
+}, delay);
+});
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if(entry.isIntersecting){
+const el = entry.target;
+if(el.classList.contains('reveal-group')){
+const children = el.querySelectorAll('.reveal-item');
+const stagger = parseInt(el.dataset.stagger || 100, 10);
+const baseDelay = parseInt(el.dataset.delay || 0, 10);
+children.forEach((child, idx) => {
+setTimeout(() => {
+child.classList.add('revealed');
+}, baseDelay + idx * stagger);
+});
+}else{
+const delay = parseInt(el.dataset.delay || 0, 10);
+setTimeout(() => {
+el.classList.add('revealed');
+}, delay);
+}
+revealObserver.unobserve(el);
+}
+});
+}, {root:null,rootMargin:'0px 0px -10% 0px',threshold:0.05});
+
+document.querySelectorAll('.reveal-scroll').forEach(el => revealObserver.observe(el));
+
+function updateStatsCount() {
+const statsList = document.querySelectorAll('.stat-item');
+const vh = window.innerHeight;
+statsList.forEach((el) => {
+const rect = el.getBoundingClientRect();
+const targetVal = parseInt(el.dataset.target, 10);
+const startY = vh;
+const endY = vh / 2 - rect.height / 2;
+let progress = (startY - rect.top) / (startY - endY);
+progress = Math.max(0, Math.min(1, progress));
+const countSpan = el.querySelector('.stat-count');
+if(countSpan){
+countSpan.textContent = Math.round(progress * targetVal);
+}
+});
+}
+window.addEventListener('scroll', updateStatsCount, {passive:true});
+window.addEventListener('resize', updateStatsCount, {passive:true});
+
+const navDialog = document.getElementById('nav-menu');
+const navCloseBtn = document.getElementById('nav-close-btn');
+const menuBtnTrigger = document.getElementById('menu-btn-trigger');
+const navClockTime = document.getElementById('nav-clock-time');
+
+function openNavMenu() {
+stopScroll();
+if(timeElement && navClockTime) navClockTime.textContent = timeElement.textContent;
+navDialog.showModal();
+navDialog.classList.remove('nav-dialog-closing');
+navDialog.offsetHeight;
+navDialog.classList.add('nav-dialog-open');
+}
+function closeNavMenu() {
+navDialog.classList.remove('nav-dialog-open');
+navDialog.classList.add('nav-dialog-closing');
+const panel = navDialog.querySelector('.nav-panel');
+const handleTransitionEnd = (e) => {
+if(e.target === panel && e.propertyName === 'opacity'){
+panel.removeEventListener('transitionend', handleTransitionEnd);
+navDialog.close();
+navDialog.classList.remove('nav-dialog-closing');
+startScroll();
+}
+};
+panel.addEventListener('transitionend', handleTransitionEnd);
+}
+menuBtnTrigger.addEventListener('click', openNavMenu);
+navCloseBtn.addEventListener('click', closeNavMenu);
+navDialog.addEventListener('cancel', (e) => {
+e.preventDefault(); closeNavMenu();
+});
+
+window.scrollToFromMenu = function(targetId){
+closeNavMenu();
+setTimeout(() => {
+if(targetId === 'contact') openContactModal();
+else scrollToElement(targetId);
+}, 300);
+};
+
+const contactModal = document.getElementById('request-modal');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const successCloseBtn = document.getElementById('success-close-btn');
+const requestForm = document.getElementById('request-form');
+const formSubmitBtnText = document.getElementById('submit-btn-text');
+const formSubmitBtn = document.getElementById('submit-btn');
+const modalFormState = document.getElementById('modal-form-state');
+const modalSuccessState = document.getElementById('modal-success-state');
+
+function openModal(dialog) {
+stopScroll();
+dialog.showModal();
+dialog.classList.remove('modal-closing');
+dialog.offsetHeight;
+dialog.classList.add('modal-open');
+}
+function closeModal(dialog) {
+dialog.classList.remove('modal-open');
+dialog.classList.add('modal-closing');
+const panel = dialog.querySelector('.modal-panel');
+const handleTransitionEnd = (e) => {
+if(e.target === panel && e.propertyName === 'opacity'){
+panel.removeEventListener('transitionend', handleTransitionEnd);
+dialog.close();
+dialog.classList.remove('modal-closing');
+startScroll();
+}
+};
+panel.addEventListener('transitionend', handleTransitionEnd);
+}
+
+window.openContactModal = function() { openModal(contactModal); };
+window.closeContactModal = function() { closeModal(contactModal); setTimeout(resetModalStates, 300); };
+modalCloseBtn.addEventListener('click', window.closeContactModal);
+successCloseBtn.addEventListener('click', window.closeContactModal);
+contactModal.addEventListener('cancel', (e) => {
+e.preventDefault(); window.closeContactModal();
+});
+
+requestForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const inputs = requestForm.querySelectorAll('input, textarea');
+inputs.forEach(input => input.disabled = true);
+formSubmitBtn.disabled = true;
+formSubmitBtnText.textContent = 'Sending...';
+setTimeout(() => {
+modalFormState.style.display = 'none';
+modalSuccessState.style.display = 'flex';
+inputs.forEach(input => input.disabled = false);
+formSubmitBtn.disabled = false;
+formSubmitBtnText.textContent = 'Send request';
+}, 1000);
+});
+
+function resetModalStates() {
+modalFormState.style.display = 'flex';
+modalSuccessState.style.display = 'none';
+requestForm.reset();
+}
+
+if (!('closedBy' in HTMLDialogElement.prototype)) {
+[contactModal, navDialog].forEach(dialog => {
+dialog.addEventListener('click', (event) => {
+if(event.target !== dialog) return;
+const rect = dialog.getBoundingClientRect();
+const isDialogContent = (
+rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+rect.left <= event.clientX && event.clientX <= rect.left + rect.width
+);
+if (isDialogContent) return;
+if (dialog === contactModal) window.closeContactModal();
+else if (dialog === navDialog) closeNavMenu();
+});
+});
+}
+</script>
+</body>
+</html>
