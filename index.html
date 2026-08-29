@@ -62,15 +62,460 @@ img{display:block}
 @media (min-width:1024px){.hero-col-left{grid-column:span 7}}
 .hero-col-right{display:flex;flex-direction:column;align-items:flex-start;gap:2rem;width:100%}
 @media (min-width:1024px){.hero-col-right{grid-column:span 5;align-items:flex-end}}
-#hero-carousel-card{width:100%;max-width:24rem;border-radius:1.25rem;background:rgba(255,255,255,0.7);padding:0.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.05);border:1px solid rgba(230,229,226,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-@media (min-width:1024px){#hero-carousel-card{max-width:19rem}}
-.carousel-track{position:relative;min-height:3.25rem;overflow:hidden;width:100%}
-.carousel-item{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.3s cubic-bezier(0.16,1,0.3,1),transform 0.3s cubic-bezier(0.16,1,0.3,1)}
-.carousel-item.active{opacity:1;transform:translateY(0);pointer-events:auto}
-.carousel-item.exit-to-top{opacity:0;transform:translateY(-14px)}
-.carousel-item.exit-to-bottom{opacity:0;transform:translateY(14px)}
-.carousel-item.enter-from-top{opacity:0;transform:translateY(-14px)}
-.carousel-item.enter-from-bottom{opacity:0;transform:translateY(14px)}
+/* ================= RAYANE AI ASSISTANT ================= */
+#hero-ai-card {
+  position: relative;
+  width: 100%;
+  max-width: 24rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(230, 229, 226, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: max-width 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  overflow: hidden;
+  z-index: 25;
+}
+@media (min-width: 1024px) {
+  #hero-ai-card { max-width: 19.5rem; }
+  #hero-ai-card.expanded { max-width: 25rem; }
+}
+
+/* Collapsed Mini Interface */
+.ai-mini-view {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.625rem;
+  cursor: pointer;
+  align-items: center;
+  user-select: none;
+  transition: background 0.25s ease;
+}
+.ai-mini-view:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.ai-mini-icon-box {
+  aspect-ratio: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.875rem;
+  background: #0a0a0a;
+  color: #fff;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ai-mini-view:hover .ai-mini-icon-box {
+  transform: scale(1.04);
+}
+.ai-mini-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.ai-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.ai-badge-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  letter-spacing: -0.01em;
+}
+.ai-spark-icon {
+  color: #cf8047;
+  font-size: 0.875rem;
+  display: inline-block;
+  animation: ai-spark-pulse 3s infinite ease-in-out;
+}
+@keyframes ai-spark-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+}
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.12);
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+.ai-status-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  background: #22c55e;
+  border-radius: 9999px;
+  box-shadow: 0 0 6px #22c55e;
+  animation: ai-dot-pulse 2s infinite;
+}
+@keyframes ai-dot-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+.ai-mini-desc {
+  font-size: 0.75rem;
+  color: rgba(17, 17, 17, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ai-mini-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+.ai-action-btn-sm {
+  width: 1.875rem;
+  height: 1.875rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.625rem;
+  background: rgba(241, 240, 238, 0.9);
+  color: #111;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ai-action-btn-sm:hover {
+  background: #0a0a0a;
+  color: #fff;
+  transform: scale(1.06);
+}
+
+/* Expanded Full Chat Interface */
+.ai-expanded-view {
+  display: none;
+  flex-direction: column;
+  height: 27rem;
+  max-height: 72vh;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#hero-ai-card.expanded .ai-mini-view {
+  display: none;
+}
+#hero-ai-card.expanded .ai-expanded-view {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Expanded Header */
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(230, 229, 226, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+}
+.ai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.ai-header-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: #0a0a0a;
+  color: #cf8047;
+  display: grid;
+  place-items: center;
+}
+.ai-header-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.ai-header-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+.ai-header-sub {
+  font-size: 0.6875rem;
+  color: rgba(17, 17, 17, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.ai-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.ai-ctrl-btn {
+  width: 1.875rem;
+  height: 1.875rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.625rem;
+  background: rgba(241, 240, 238, 0.8);
+  color: rgba(17, 17, 17, 0.7);
+  transition: all 0.2s ease;
+}
+.ai-ctrl-btn:hover {
+  background: #0a0a0a;
+  color: #fff;
+}
+.ai-ctrl-btn.active {
+  color: #cf8047;
+}
+
+/* Chat Messages Stream */
+.ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+.ai-chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+.ai-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* Message Bubbles */
+.ai-msg {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 90%;
+  animation: ai-msg-appear 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes ai-msg-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ai-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.ai-msg.bot {
+  align-self: flex-start;
+}
+.ai-bubble {
+  padding: 0.625rem 0.875rem;
+  border-radius: 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  position: relative;
+  word-break: break-word;
+}
+.ai-msg.user .ai-bubble {
+  background: #0a0a0a;
+  color: #fff;
+  border-bottom-right-radius: 0.25rem;
+}
+.ai-msg.bot .ai-bubble {
+  background: rgba(241, 240, 238, 0.95);
+  color: #111;
+  border: 1px solid rgba(230, 229, 226, 0.95);
+  border-bottom-left-radius: 0.25rem;
+}
+.ai-bubble-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.ai-bubble-btn {
+  font-size: 0.6875rem;
+  color: rgba(17, 17, 17, 0.55);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.375rem;
+  background: rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+}
+.ai-bubble-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #111;
+}
+
+/* Thinking Indicator */
+.ai-thinking-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: rgba(17, 17, 17, 0.5);
+  font-style: italic;
+  padding: 0.5rem 0.75rem;
+  background: rgba(241, 240, 238, 0.7);
+  border-radius: 0.875rem;
+  border: 1px dashed rgba(230, 229, 226, 0.9);
+}
+.ai-thinking-dots {
+  display: inline-flex;
+  gap: 0.2rem;
+}
+.ai-thinking-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: #cf8047;
+  border-radius: 9999px;
+  animation: ai-think-bounce 1.2s infinite ease-in-out;
+}
+.ai-thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ai-think-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Speaking Wave Animation */
+.ai-wave-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 12px;
+  padding: 0 2px;
+}
+.ai-wave-bar {
+  width: 2px;
+  height: 100%;
+  background: #cf8047;
+  border-radius: 1px;
+  animation: ai-wave-anim 0.8s ease-in-out infinite alternate;
+}
+.ai-wave-bar:nth-child(1) { animation-delay: 0.1s; height: 30%; }
+.ai-wave-bar:nth-child(2) { animation-delay: 0.3s; height: 80%; }
+.ai-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 50%; }
+.ai-wave-bar:nth-child(4) { animation-delay: 0.4s; height: 100%; }
+@keyframes ai-wave-anim {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+/* Quick Questions Chips */
+.ai-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.5rem 0.875rem 0.25rem;
+  border-top: 1px solid rgba(230, 229, 226, 0.6);
+}
+.ai-quick-pill {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #111;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(230, 229, 226, 0.9);
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.ai-quick-pill:hover {
+  background: #0a0a0a;
+  color: #fff;
+  border-color: #0a0a0a;
+  transform: translateY(-1px);
+}
+
+/* Input Bar */
+.ai-chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid rgba(230, 229, 226, 0.8);
+}
+.ai-chat-input {
+  flex: 1;
+  background: rgba(241, 240, 238, 0.7);
+  border: 1px solid rgba(230, 229, 226, 0.9);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  color: #111;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.ai-chat-input:focus {
+  background: #fff;
+  border-color: rgba(17, 17, 17, 0.3);
+}
+.ai-chat-input::placeholder {
+  color: rgba(17, 17, 17, 0.4);
+}
+.ai-btn-mic {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  display: grid;
+  place-items: center;
+  background: rgba(241, 240, 238, 0.9);
+  color: #111;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+.ai-btn-mic:hover {
+  background: rgba(17, 17, 17, 0.1);
+}
+.ai-btn-mic.recording {
+  background: #ef4444 !important;
+  color: #fff !important;
+  animation: ai-mic-pulse 1s infinite alternate;
+}
+@keyframes ai-mic-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  100% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+.ai-btn-send {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  display: grid;
+  place-items: center;
+  background: #0a0a0a;
+  color: #fff;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.ai-btn-send:hover {
+  background: #b15f2c;
+  transform: scale(1.05);
+}
+.ai-btn-send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
 #hero-partners-block{width:100%;max-width:24rem}
 @media (min-width:1024px){#hero-partners-block{max-width:19rem}}
 .partner-item{display:flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:rgba(17,17,17,0.7);opacity:0.7;transform:translateY(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1),opacity 0.35s cubic-bezier(0.2,0.8,0.2,1)}
@@ -147,6 +592,78 @@ img{display:block}
 @media (min-width:640px){.service-row{gap:1.5rem;padding:2rem 1.5rem}}
 .service-badge{width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:9999px;background:#0a0a0a;color:#fff;transform:translateX(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);flex-shrink:0}
 @media (min-width:640px){.service-badge{width:3rem;height:3rem}}
+/* ================= LANGUAGES SECTION ================= */
+.languages-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .languages-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .languages-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+.language-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: 1.5rem;
+  background: #f8f8f7;
+  border: 1px solid #e6e5e2;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.25, 1);
+  height: 100%;
+}
+.language-card:hover {
+  background: #ffffff;
+  border-color: rgba(17, 17, 17, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.06);
+}
+.language-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.language-flag-wrap {
+  display: flex;
+  align-items: center;
+}
+.language-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.language-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+.language-sub {
+  font-size: 0.8125rem;
+  color: rgba(17, 17, 17, 0.5);
+  font-weight: 500;
+}
+.language-pill {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #111;
+  background: rgba(230, 229, 226, 0.6);
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(230, 229, 226, 0.9);
+}
+
 .text-h2-stats{font-size:1.875rem}
 @media (min-width:640px){#stats-grid + section .shell{padding-left:2rem !important;padding-right:2rem !important}}
 @media (min-width:768px){
@@ -359,42 +876,94 @@ dialog[open]::backdrop{opacity:1}
       </div>
       
       <div class="hero-col-right">
-        <div id="hero-carousel-card" class="reveal-on-ready reveal-fade-up hero-card-reveal" data-delay="400">
-          <div style="display:flex;gap:0.5rem;cursor:pointer;border-radius:0.875rem">
-            <div style="aspect-ratio:1;width:6rem;display:grid;place-items:center;border-radius:0.875rem;background:#0a0a0a;color:#fff;flex-shrink:0">
-              <svg style="width:1.875rem;height:1.875rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
+        <div id="hero-ai-card" class="reveal-on-ready reveal-fade-up hero-card-reveal" data-delay="400" aria-label="Rayane AI Assistant">
+          <!-- Collapsed Mini Interface -->
+          <div class="ai-mini-view" id="ai-mini-trigger" role="button" tabindex="0" title="Cliquer pour discuter avec Rayane AI">
+            <div class="ai-mini-icon-box">
+              <svg style="width:1.5rem;height:1.5rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
             </div>
-            <div style="flex:1;border-radius:0.875rem;background:rgba(241,240,238,0.7);padding:0.75rem;display:flex;flex-direction:column;justify-content:space-between">
-              <div class="carousel-track">
-                <div class="carousel-item active" data-index="0">
-                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Conversion design</div>
-                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Crafted to convert.</div>
+            <div class="ai-mini-info">
+              <div class="ai-badge-row">
+                <div class="ai-badge-title">
+                  <span class="ai-spark-icon">✦</span>
+                  <span>Rayane AI</span>
                 </div>
-                <div class="carousel-item next" data-index="1">
-                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Engineering</div>
-                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Built to scale.</div>
-                </div>
-                <div class="carousel-item next" data-index="2">
-                  <div class="carousel-caption" style="font-size:0.65rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:rgba(17,17,17,0.45);margin-bottom:0.125rem">Brand systems</div>
-                  <div class="carousel-title" style="max-width:8rem;font-size:0.875rem;font-weight:500;line-height:1.35;color:#111">Designed to last.</div>
+                <div class="ai-status-pill">
+                  <span class="ai-status-dot"></span>
+                  <span>Online</span>
                 </div>
               </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem">
-                <div style="display:flex;gap:0.25rem">
-                  <div class="carousel-dash active"></div>
-                  <div class="carousel-dash"></div>
-                  <div class="carousel-dash"></div>
+              <div class="ai-mini-desc">Posez une question sur Rayane...</div>
+            </div>
+            <div class="ai-mini-actions">
+              <button class="ai-action-btn-sm" id="ai-mini-mic" aria-label="Poser une question vocale" title="Parler au micro">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+              </button>
+              <button class="ai-action-btn-sm" id="ai-mini-expand" aria-label="Ouvrir Rayane AI en grand" title="Agrandir">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Expanded Chat Interface -->
+          <div class="ai-expanded-view" id="ai-expanded-view">
+            <div class="ai-chat-header">
+              <div class="ai-header-left">
+                <div class="ai-header-avatar">
+                  <svg style="width:1.125rem;height:1.125rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
                 </div>
-                <div style="display:flex;gap:0.375rem">
-                  <button id="carousel-prev" aria-label="Previous slide">
-                    <svg style="width:0.75rem;height:0.75rem;transform:rotate(180deg)" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-                  </button>
-                  <button id="carousel-next" aria-label="Next slide">
-                    <svg style="width:0.75rem;height:0.75rem" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-                  </button>
+                <div class="ai-header-meta">
+                  <div class="ai-header-title">Rayane AI</div>
+                  <div class="ai-header-sub">
+                    <span class="ai-status-dot" style="width:0.3rem;height:0.3rem"></span>
+                    <span>Assistant Personnel</span>
+                    <span id="ai-speaking-indicator" style="display:none;margin-left:4px;" class="ai-wave-wrap" title="En train de parler">
+                      <span class="ai-wave-bar"></span>
+                      <span class="ai-wave-bar"></span>
+                      <span class="ai-wave-bar"></span>
+                      <span class="ai-wave-bar"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-header-controls">
+                <button class="ai-ctrl-btn" id="ai-tts-toggle" aria-label="Activer/Désactiver la voix" title="Lecture vocale auto (TTS)">
+                  <svg id="ai-tts-icon" style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                </button>
+                <button class="ai-ctrl-btn" id="ai-minimize-btn" aria-label="Réduire" title="Réduire">
+                  <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="ai-chat-messages" id="ai-chat-messages">
+              <div class="ai-msg bot">
+                <div class="ai-bubble">
+                  👋 Bonjour ! Je suis <strong>Rayane AI</strong>, l'assistant personnel de Rayane. Posez-moi vos questions sur ses compétences, son projet <em>Oran Road</em>, son parcours ou comment le contacter !
                 </div>
               </div>
             </div>
+
+            <!-- Quick Question Chips -->
+            <div class="ai-quick-pills" id="ai-quick-pills">
+              <button type="button" class="ai-quick-pill" data-q="Qui est Rayane ?">Qui est Rayane ?</button>
+              <button type="button" class="ai-quick-pill" data-q="Quelles sont ses compétences ?">Ses compétences</button>
+              <button type="button" class="ai-quick-pill" data-q="Parle-moi de ses projets">Ses projets</button>
+              <button type="button" class="ai-quick-pill" data-q="Quel est son parcours ?">Son parcours</button>
+              <button type="button" class="ai-quick-pill" data-q="Comment le contacter ?">Comment le contacter ?</button>
+            </div>
+
+            <!-- Input Bar -->
+            <form class="ai-chat-input-row" id="ai-chat-form">
+              <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="Posez une question à Rayane AI..." autocomplete="off" />
+              <button type="button" class="ai-btn-mic" id="ai-btn-mic" aria-label="Microphone" title="Parler au micro">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+              </button>
+              <button type="submit" class="ai-btn-send" id="ai-btn-send" aria-label="Envoyer" title="Envoyer">
+                <svg style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
           </div>
         </div>
         
@@ -673,6 +1242,110 @@ dialog[open]::backdrop{opacity:1}
           </li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section id="languages" style="background:#fff">
+    <div class="shell" style="padding:0 1.25rem 5rem">
+      <div class="reveal-scroll reveal-fade-up hero-eyebrow-reveal" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+        <span style="width:0.375rem;height:0.375rem;background:#b15f2c;border-radius:9999px"></span>
+        <span>Languages</span>
+      </div>
+      <h2 class="reveal-scroll reveal-lines text-h2-services" data-delay="120" style="font-weight:600;letter-spacing:-0.02em;margin-top:1rem;margin-bottom:2.5rem;max-width:20ch">
+        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">Languages spoken</span></span>
+      </h2>
+      
+      <ul class="reveal-scroll reveal-group" data-stagger="80" class="languages-grid">
+        <!-- Anglais -->
+        <li class="reveal-item reveal-fade-up">
+          <div class="language-card">
+            <div class="language-top-row">
+              <div class="language-flag-wrap">
+                <svg style="width:2.25rem;height:1.6rem;border-radius:0.375rem;box-shadow:0 1px 3px rgba(0,0,0,0.15);overflow:hidden;flex-shrink:0" viewBox="0 0 60 30" aria-label="Drapeau Royaume-Uni">
+                  <clipPath id="uk-flag-clip"><rect width="60" height="30" rx="2"/></clipPath>
+                  <g clip-path="url(#uk-flag-clip)">
+                    <path d="M0 0v30h60V0z" fill="#012169"/>
+                    <path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
+                    <path d="M0 0l60 30m0-30L0 30" stroke="#C8102E" stroke-width="4"/>
+                    <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+                    <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+                  </g>
+                </svg>
+              </div>
+              <span class="language-pill">Professionnel / B2</span>
+            </div>
+            <div class="language-info">
+              <div class="language-name">Anglais</div>
+              <div class="language-sub">English (Technical & Professional)</div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Français -->
+        <li class="reveal-item reveal-fade-up">
+          <div class="language-card">
+            <div class="language-top-row">
+              <div class="language-flag-wrap">
+                <svg style="width:2.25rem;height:1.6rem;border-radius:0.375rem;box-shadow:0 1px 3px rgba(0,0,0,0.15);overflow:hidden;flex-shrink:0" viewBox="0 0 3 2" aria-label="Drapeau France">
+                  <rect width="1" height="2" fill="#002395"/>
+                  <rect x="1" width="1" height="2" fill="#ffffff"/>
+                  <rect x="2" width="1" height="2" fill="#ED2939"/>
+                </svg>
+              </div>
+              <span class="language-pill">Courant / Bilingue</span>
+            </div>
+            <div class="language-info">
+              <div class="language-name">Français</div>
+              <div class="language-sub">French (Fluent & Academic)</div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Arabe -->
+        <li class="reveal-item reveal-fade-up">
+          <div class="language-card">
+            <div class="language-top-row">
+              <div class="language-flag-wrap">
+                <svg style="width:2.25rem;height:1.6rem;border-radius:0.375rem;box-shadow:0 1px 3px rgba(0,0,0,0.15);overflow:hidden;flex-shrink:0" viewBox="0 0 900 600" aria-label="Drapeau Algérie">
+                  <rect width="450" height="600" fill="#006233"/>
+                  <rect x="450" width="450" height="600" fill="#ffffff"/>
+                  <circle cx="450" cy="300" r="150" fill="#d21034"/>
+                  <circle cx="485" cy="300" r="120" fill="#ffffff"/>
+                  <polygon points="480,240 498,280 540,280 505,305 520,345 480,320 440,345 455,305 420,280 462,280" fill="#d21034"/>
+                </svg>
+              </div>
+              <span class="language-pill">Langue Maternelle</span>
+            </div>
+            <div class="language-info">
+              <div class="language-name">Arabe</div>
+              <div class="language-sub">العربية (Native)</div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Kabyle -->
+        <li class="reveal-item reveal-fade-up">
+          <div class="language-card">
+            <div class="language-top-row">
+              <div class="language-flag-wrap">
+                <svg style="width:2.25rem;height:1.6rem;border-radius:0.375rem;box-shadow:0 1px 3px rgba(0,0,0,0.15);overflow:hidden;flex-shrink:0" viewBox="0 0 900 600" aria-label="Drapeau Amazigh / Kabyle">
+                  <rect width="900" height="200" fill="#0080ff"/>
+                  <rect y="200" width="900" height="200" fill="#00b050"/>
+                  <rect y="400" width="900" height="200" fill="#ffe600"/>
+                  <g fill="none" stroke="#d21034" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M340 150 c-110 0 -110 300 0 300 M560 150 c110 0 110 300 0 300 M450 110 v380 M310 300 h280"/>
+                  </g>
+                </svg>
+              </div>
+              <span class="language-pill">Langue Maternelle</span>
+            </div>
+            <div class="language-info">
+              <div class="language-name">Kabyle</div>
+              <div class="language-sub">Taqbaylit ⵣ (Native)</div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 </main>
@@ -1125,52 +1798,504 @@ pointsQueue = [];
 }
 requestAnimationFrame(tick);
 
-const carouselItems = document.querySelectorAll('.carousel-item');
-const dashIndicators = document.querySelectorAll('.carousel-dash');
-const prevBtn = document.getElementById('carousel-prev');
-const nextBtn = document.getElementById('carousel-next');
-const carouselCard = document.getElementById('hero-carousel-card');
-let carouselIndex = 0;
-const carouselTotal = carouselItems.length;
-let autoCycleTimer = null;
+/* ================= RAYANE AI CONTROLLER ================= */
+const aiCard = document.getElementById('hero-ai-card');
+const aiMiniTrigger = document.getElementById('ai-mini-trigger');
+const aiMiniExpand = document.getElementById('ai-mini-expand');
+const aiMiniMic = document.getElementById('ai-mini-mic');
+const aiMinimizeBtn = document.getElementById('ai-minimize-btn');
+const aiChatForm = document.getElementById('ai-chat-form');
+const aiChatInput = document.getElementById('ai-chat-input');
+const aiChatMessages = document.getElementById('ai-chat-messages');
+const aiBtnMic = document.getElementById('ai-btn-mic');
+const aiBtnSend = document.getElementById('ai-btn-send');
+const aiQuickPills = document.querySelectorAll('.ai-quick-pill');
+const aiTtsToggle = document.getElementById('ai-tts-toggle');
+const aiSpeakingIndicator = document.getElementById('ai-speaking-indicator');
 
-function showSlide(index, direction = 'next') {
-carouselItems.forEach((item, i) => {
-item.className = 'carousel-item';
-if(i === index){
-item.classList.add('active');
-}else if(i === carouselIndex){
-item.classList.add(direction === 'next' ? 'exit-to-top' : 'exit-to-bottom');
-}else{
-item.classList.add(direction === 'next' ? 'enter-from-bottom' : 'enter-from-top');
-}
-});
-dashIndicators.forEach((dash, idx) => {
-dash.classList.toggle('active', idx === index);
-});
-carouselIndex = index;
+let isAiExpanded = false;
+let isTtsEnabled = true;
+let isRecording = false;
+let isSpeaking = false;
+let isAiResponding = false;
+let speechRecognition = null;
+
+// Initialize Text-to-Speech toggle style
+if (aiTtsToggle) {
+  aiTtsToggle.classList.toggle('active', isTtsEnabled);
+  aiTtsToggle.addEventListener('click', () => {
+    isTtsEnabled = !isTtsEnabled;
+    aiTtsToggle.classList.toggle('active', isTtsEnabled);
+    if (!isTtsEnabled && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      stopSpeakingIndicator();
+    }
+  });
 }
 
-function nextSlide() {
-showSlide((carouselIndex + 1) % carouselTotal, 'next');
-}
-function prevSlide() {
-showSlide((carouselIndex - 1 + carouselTotal) % carouselTotal, 'prev');
+// Expand / Collapse functionality
+function expandAi() {
+  if (isAiExpanded) return;
+  isAiExpanded = true;
+  aiCard.classList.add('expanded');
+  setTimeout(() => {
+    if (aiChatInput) aiChatInput.focus();
+    scrollAiToBottom();
+  }, 150);
 }
 
-prevBtn.addEventListener('click', (e) => {
-e.stopPropagation(); prevSlide(); resetAutoCycle();
+function collapseAi() {
+  if (!isAiExpanded) return;
+  isAiExpanded = false;
+  aiCard.classList.remove('expanded');
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+    stopSpeakingIndicator();
+  }
+  if (isRecording && speechRecognition) {
+    speechRecognition.stop();
+  }
+}
+
+if (aiMiniTrigger) {
+  aiMiniTrigger.addEventListener('click', (e) => {
+    if (e.target.closest('#ai-mini-mic')) return;
+    expandAi();
+  });
+}
+if (aiMiniExpand) {
+  aiMiniExpand.addEventListener('click', (e) => {
+    e.stopPropagation();
+    expandAi();
+  });
+}
+if (aiMinimizeBtn) {
+  aiMinimizeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    collapseAi();
+  });
+}
+
+// Speech Recognition (Speech-to-Text)
+const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRec) {
+  speechRecognition = new SpeechRec();
+  speechRecognition.continuous = false;
+  speechRecognition.interimResults = false;
+  speechRecognition.lang = 'fr-FR';
+
+  speechRecognition.onstart = () => {
+    isRecording = true;
+    if (aiBtnMic) aiBtnMic.classList.add('recording');
+    if (aiMiniMic) aiMiniMic.classList.add('recording');
+  };
+
+  speechRecognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    if (transcript && transcript.trim()) {
+      if (aiChatInput) aiChatInput.value = transcript;
+      handleUserSubmit(transcript);
+    }
+  };
+
+  speechRecognition.onerror = (event) => {
+    console.warn('Speech recognition error:', event.error);
+    stopRecordingUI();
+  };
+
+  speechRecognition.onend = () => {
+    stopRecordingUI();
+  };
+}
+
+function stopRecordingUI() {
+  isRecording = false;
+  if (aiBtnMic) aiBtnMic.classList.remove('recording');
+  if (aiMiniMic) aiMiniMic.classList.remove('recording');
+}
+
+function toggleSpeechRecognition() {
+  if (!speechRecognition) {
+    alert("La reconnaissance vocale n'est pas supportée par votre navigateur actuel. Vous pouvez saisir votre message au clavier.");
+    return;
+  }
+  if (isRecording) {
+    speechRecognition.stop();
+  } else {
+    try {
+      speechRecognition.start();
+    } catch(err) {
+      console.warn('Could not start recognition:', err);
+    }
+  }
+}
+
+if (aiBtnMic) {
+  aiBtnMic.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleSpeechRecognition();
+  });
+}
+if (aiMiniMic) {
+  aiMiniMic.addEventListener('click', (e) => {
+    e.stopPropagation();
+    expandAi();
+    setTimeout(toggleSpeechRecognition, 300);
+  });
+}
+
+// Text-to-Speech (Speech Synthesis)
+function startSpeakingIndicator() {
+  isSpeaking = true;
+  if (aiSpeakingIndicator) aiSpeakingIndicator.style.display = 'inline-flex';
+}
+
+function stopSpeakingIndicator() {
+  isSpeaking = false;
+  if (aiSpeakingIndicator) aiSpeakingIndicator.style.display = 'none';
+}
+
+function speakText(text, lang = 'fr-FR') {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+
+  // Clean markdown & HTML tags for natural pronunciation
+  const cleanText = text.replace(/<[^>]*>/g, '').replace(/[*_#`•]/g, ' ');
+  const utterance = new SpeechSynthesisUtterance(cleanText);
+  utterance.lang = lang;
+  utterance.rate = 1.05;
+  utterance.pitch = 1.0;
+
+  // Try to pick a natural voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const selectedVoice = voices.find(v => v.lang.startsWith(lang.slice(0, 2)) && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Premium'))) || voices.find(v => v.lang.startsWith(lang.slice(0, 2)));
+  if (selectedVoice) utterance.voice = selectedVoice;
+
+  utterance.onstart = startSpeakingIndicator;
+  utterance.onend = stopSpeakingIndicator;
+  utterance.onerror = stopSpeakingIndicator;
+
+  window.speechSynthesis.speak(utterance);
+}
+
+// Helper to scroll messages
+function scrollAiToBottom() {
+  if (aiChatMessages) {
+    aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+  }
+}
+
+// Message Rendering
+function appendUserMessage(text) {
+  const msgEl = document.createElement('div');
+  msgEl.className = 'ai-msg user';
+  msgEl.innerHTML = `<div class="ai-bubble">${escapeHtml(text)}</div>`;
+  aiChatMessages.appendChild(msgEl);
+  scrollAiToBottom();
+}
+
+function appendThinkingIndicator() {
+  const thinkingEl = document.createElement('div');
+  thinkingEl.className = 'ai-msg bot';
+  thinkingEl.id = 'ai-thinking-msg';
+  thinkingEl.innerHTML = `
+    <div class="ai-thinking-row">
+      <span>Rayane AI is thinking</span>
+      <div class="ai-thinking-dots">
+        <span class="ai-thinking-dot"></span>
+        <span class="ai-thinking-dot"></span>
+        <span class="ai-thinking-dot"></span>
+      </div>
+    </div>`;
+  aiChatMessages.appendChild(thinkingEl);
+  scrollAiToBottom();
+  return thinkingEl;
+}
+
+function removeThinkingIndicator() {
+  const thinkingEl = document.getElementById('ai-thinking-msg');
+  if (thinkingEl) thinkingEl.remove();
+}
+
+function appendBotMessage(htmlContent, plainTextForSpeech, lang = 'fr-FR') {
+  const msgEl = document.createElement('div');
+  msgEl.className = 'ai-msg bot';
+  
+  const bubble = document.createElement('div');
+  bubble.className = 'ai-bubble';
+  bubble.innerHTML = htmlContent;
+  msgEl.appendChild(bubble);
+
+  // Add audio replay button
+  const actions = document.createElement('div');
+  actions.className = 'ai-bubble-actions';
+  actions.innerHTML = `
+    <button type="button" class="ai-bubble-btn" title="Écouter la réponse">
+      <svg style="width:0.75rem;height:0.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <span>Écouter</span>
+    </button>`;
+  
+  const replayBtn = actions.querySelector('button');
+  replayBtn.addEventListener('click', () => {
+    speakText(plainTextForSpeech, lang);
+  });
+  bubble.appendChild(actions);
+
+  aiChatMessages.appendChild(msgEl);
+  scrollAiToBottom();
+
+  if (isTtsEnabled) {
+    speakText(plainTextForSpeech, lang);
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ================= LOCAL AI KNOWLEDGE BASE ================= */
+// Base de connaissances basée à 100% sur le portfolio réel de Rayane
+async function getAIResponse(userPrompt) {
+  // Délai de réflexion naturel (350ms - 650ms)
+  await new Promise(r => setTimeout(r, 380 + Math.random() * 250));
+
+  const q = userPrompt.toLowerCase().trim();
+  const isEn = /\b(who|what|where|how|tell|projects|skills|studies|background|contact|email|hello|hi|hey)\b/i.test(q) && !/\b(qui|que|quoi|comment|ses|son|bonjour|salut|parle)\b/i.test(q);
+  const lang = isEn ? 'en-US' : 'fr-FR';
+
+  // 1. Qui est Rayane ? / Who is Rayane?
+  if (q.includes('qui est') || q.includes('presentation') || q.includes('présente') || q.includes('who is') || q.includes('about rayane') || q.includes('who are you') || q.includes('c\'est qui') || q.includes('parle de toi')) {
+    if (isEn) {
+      return {
+        html: `<strong>Rayane Ould Ali</strong> is a software developer and Master's student in Data Science at USTO-MB in Oran, Algeria. Originally from Michelet (Tizi Ouzou) and living in Bir El Djir (Oran), he builds scalable web/mobile apps, backend architectures, and intelligent systems under the motto: <em>"Rebuild. Rise. Reign."</em>`,
+        plain: `Rayane Ould Ali is a software developer and Master's student in Data Science at USTO-MB in Oran, Algeria. He specializes in mobile and web development, backend systems, and data science.`,
+        lang
+      };
+    }
+    return {
+      html: `<strong>Rayane Ould Ali</strong> est un développeur et étudiant en Master Data Science à l'USTO-MB à Oran. Originaire de Michelet (Tizi Ouzou) et installé à Bir El Djir (Oran), il se passionne pour la création logicielle, les applications mobiles, les systèmes backend et la cybersécurité avec pour devise : <em>« Rebuild. Rise. Reign. »</em>`,
+      plain: `Rayane Ould Ali est un développeur et étudiant en Master Data Science à l'Université USTO-MB d'Oran. Il est passionné par le développement d'applications, les systèmes backend et les nouvelles technologies.`,
+      lang
+    };
+  }
+
+  // 2. Compétences / Technologies / Skills
+  if (q.includes('compétence') || q.includes('competence') || q.includes('techno') || q.includes('stack') || q.includes('skill') || q.includes('sait faire') || q.includes('flutter') || q.includes('dart') || q.includes('langage')) {
+    if (isEn) {
+      return {
+        html: `Here are Rayane's key technical skills:<br>
+        • <strong>Mobile App Development:</strong> Flutter, Dart, REST APIs<br>
+        • <strong>Software & Backend:</strong> Backend Systems, Architecture, Scalable Web Apps<br>
+        • <strong>Data Science & AI:</strong> Machine Learning & Data Analytics (Master USTO-MB)<br>
+        • <strong>Cybersecurity & QA:</strong> Secure architectures & rigorous testing.`,
+        plain: `Rayane specializes in Mobile Development with Flutter and Dart, Backend systems, REST APIs, Data Science, and Cybersecurity.`,
+        lang
+      };
+    }
+    return {
+      html: `Voici les domaines d'expertise et compétences techniques de Rayane :<br>
+      • <strong>Développement Mobile :</strong> Flutter, Dart, APIs REST<br>
+      • <strong>Développement Logiciel & Backend :</strong> Systèmes évolutifs, architectures web<br>
+      • <strong>Data Science :</strong> Analyse de données, Machine Learning (Master USTO-MB)<br>
+      • <strong>Cybersécurité & Qualité :</strong> Systèmes fiables et tests rigoureux.`,
+      plain: `Rayane est spécialisé en développement mobile avec Flutter et Dart, en architectures logicielles backend, en Data Science et en cybersécurité.`,
+      lang
+    };
+  }
+
+  // 3. Projets / Oran Road / Projects
+  if (q.includes('projet') || q.includes('oran road') || q.includes('project') || q.includes('realisation') || q.includes('réalisation') || q.includes('app') || q.includes('travaux')) {
+    if (isEn) {
+      return {
+        html: `Rayane's flagship project is <strong>Oran Road</strong> (2026) :<br>
+        A smart mobility and intelligent transportation mobile application designed for the Wilaya of Oran. Built with <strong>Flutter, Dart, and REST APIs</strong>, it optimizes public transit management and user commuting. Other exciting personal and academic projects are coming soon!`,
+        plain: `Rayane's main project is Oran Road, an intelligent transportation mobile app built with Flutter and Dart for the Wilaya of Oran.`,
+        lang
+      };
+    }
+    return {
+      html: `Le projet principal de Rayane est <strong>Oran Road</strong> (2026) :<br>
+      Une application mobile de transport intelligent conçue pour la Wilaya d'Oran. Développée avec <strong>Flutter, Dart et des APIs REST</strong>, elle vise à améliorer la mobilité et la gestion des transports en commun pour les citoyens. D'autres projets techniques seront bientôt ajoutés à son portfolio !`,
+      plain: `Le projet majeur de Rayane est Oran Road, une application mobile de transport intelligent conçue avec Flutter et Dart pour la Wilaya d'Oran.`,
+      lang
+    };
+  }
+
+  // 4. Parcours / Études / Diplômes / Education
+  if (q.includes('parcours') || q.includes('etude') || q.includes('étude') || q.includes('diplome') || q.includes('diplôme') || q.includes('formation') || q.includes('usto') || q.includes('education') || q.includes('master') || q.includes('licence') || q.includes('bac') || q.includes('background') || q.includes('age') || q.includes('âge') || q.includes('naissance') || q.includes('origine')) {
+    if (isEn) {
+      return {
+        html: `<strong>Academic & Personal Journey:</strong><br>
+        • <strong>Master in Data Science</strong> at USTO-MB (University of Science and Technology of Oran)<br>
+        • <strong>Bachelor's Degree in Computer Science</strong> (Licence Informatique)<br>
+        • <strong>Scientific Baccalaureate</strong> (2 validated degrees)<br>
+        • Born July 26, 2004 — journey started in Michelet (Tizi Ouzou) and continues in Bir El Djir (Oran).`,
+        plain: `Rayane is currently pursuing a Master's in Data Science at USTO-MB. He holds a Bachelor's in Computer Science and a Scientific Baccalaureate.`,
+        lang
+      };
+    }
+    return {
+      html: `<strong>Parcours académique de Rayane :</strong><br>
+      • <strong>Master en Data Science</strong> à l'USTO-MB (Université des Sciences et de la Technologie d'Oran – Mohamed Boudiaf)<br>
+      • <strong>Licence en Informatique</strong><br>
+      • <strong>Baccalauréat Scientifique</strong> (02 diplômes validés)<br>
+      • Né le 26 juillet 2004, son parcours a débuté à Michelet (Tizi Ouzou) avant de se poursuivre à Bir El Djir (Oran).`,
+      plain: `Rayane prépare un Master en Data Science à l'USTO-MB. Il est titulaire d'une Licence en Informatique et d'un Baccalauréat Scientifique.`,
+      lang
+    };
+  }
+
+  // 5. Contact / Email / LinkedIn / Instagram / Embauche
+  if (q.includes('contact') || q.includes('joindre') || q.includes('email') || q.includes('mail') || q.includes('linkedin') || q.includes('instagram') || q.includes('ecrire') || q.includes('message') || q.includes('hire') || q.includes('recruter') || q.includes('travailler')) {
+    if (isEn) {
+      return {
+        html: `You can easily reach Rayane via:<br>
+        • <strong>Email :</strong> <a href="mailto:rayaneoa777@gmail.com" class="about-inline-link">rayaneoa777@gmail.com</a><br>
+        • <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/rayane-ould-ali-393693356" target="_blank" rel="noopener" class="about-inline-link">Rayane Ould Ali</a><br>
+        • <strong>Instagram :</strong> <a href="https://www.instagram.com/rayan_ould_ali/" target="_blank" rel="noopener" class="about-inline-link">@rayan_ould_ali</a><br>
+        • Or via the <strong>"Let's Talk"</strong> button on this page!`,
+        plain: `You can contact Rayane by email at rayaneoa777@gmail.com, on LinkedIn, or via his Instagram @rayan_ould_ali.`,
+        lang
+      };
+    }
+    return {
+      html: `Vous pouvez contacter Rayane très facilement :<br>
+      • <strong>Email :</strong> <a href="mailto:rayaneoa777@gmail.com" class="about-inline-link">rayaneoa777@gmail.com</a><br>
+      • <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/rayane-ould-ali-393693356" target="_blank" rel="noopener" class="about-inline-link">Rayane Ould Ali</a><br>
+      • <strong>Instagram :</strong> <a href="https://www.instagram.com/rayan_ould_ali/" target="_blank" rel="noopener" class="about-inline-link">@rayan_ould_ali</a><br>
+      • Ou en cliquant sur le bouton <strong>« Let's Talk »</strong> du portfolio !`,
+      plain: `Vous pouvez contacter Rayane par e-mail à rayaneoa777@gmail.com, sur LinkedIn ou sur son compte Instagram @rayan_ould_ali.`,
+      lang
+    };
+  }
+
+  // 6. Services proposés
+  if (q.includes('service') || q.includes('prestation') || q.includes('offre') || q.includes('propose') || q.includes('mission')) {
+    if (isEn) {
+      return {
+        html: `Rayane provides high-standard engineering services:<br>
+        1. <strong>Software Development:</strong> Scalable web & mobile products<br>
+        2. <strong>Product Design:</strong> Sharp, intuitive and clean interfaces<br>
+        3. <strong>Quality Assurance:</strong> Rigorous testing for solid releases<br>
+        4. <strong>Consulting:</strong> Technical direction & architecture strategy.`,
+        plain: `Rayane offers Software Development, Product Design, Quality Assurance, and Technical Consulting services.`,
+        lang
+      };
+    }
+    return {
+      html: `Rayane propose 4 grands types de services :<br>
+      1. <strong>Software Development :</strong> Produits web & mobiles performants et scalables<br>
+      2. <strong>Product Design :</strong> Interfaces soignées, modernes et intuitives<br>
+      3. <strong>Quality Assurance :</strong> Tests rigoureux pour garantir zéro défaut<br>
+      4. <strong>Consulting :</strong> Conseil stratégique et orientation technique.`,
+      plain: `Rayane propose des services en Développement Logiciel, Design de Produit, Assurance Qualité et Consulting technique.`,
+      lang
+    };
+  }
+
+  // 7. Langues maîtrisées / Languages spoken
+  if (q.includes('langue') || q.includes('language') || q.includes('parle') || q.includes('speak') || q.includes('arabe') || q.includes('kabyle') || q.includes('francais') || q.includes('français') || q.includes('anglais') || q.includes('english')) {
+    if (isEn) {
+      return {
+        html: `Rayane speaks <strong>4 languages</strong>:<br>
+        • 🇬🇧 <strong>English:</strong> Professional & Technical fluency (C1)<br>
+        • 🇫🇷 <strong>French:</strong> Fluent & Academic (Bilingual)<br>
+        • 🇩🇿 <strong>Arabic:</strong> Native language<br>
+        • ⵣ <strong>Kabyle (Taqbaylit):</strong> Native language.`,
+        plain: `Rayane speaks 4 languages: English at a professional level, French fluently, as well as Arabic and Kabyle as native languages.`,
+        lang
+      };
+    }
+    return {
+      html: `Rayane maîtrise <strong>4 langues</strong> :<br>
+      • 🇬🇧 <strong>Anglais :</strong> Niveau professionnel et technique (C1)<br>
+      • 🇫🇷 <strong>Français :</strong> Courant et académique (Bilingue)<br>
+      • 🇩🇿 <strong>Arabe :</strong> Langue maternelle<br>
+      • ⵣ <strong>Kabyle (Taqbaylit) :</strong> Langue maternelle.`,
+      plain: `Rayane maîtrise 4 langues : l'anglais au niveau professionnel, le français couramment, ainsi que l'arabe et le kabyle comme langues maternelles.`,
+      lang
+    };
+  }
+
+  // 7. Salutations / Greetings
+  if (q.includes('bonjour') || q.includes('salut') || q.includes('coucou') || q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('salam') || q.includes('ça va') || q.includes('ca va')) {
+    if (isEn) {
+      return {
+        html: `Hello! I'm <strong>Rayane AI</strong>, Rayane's personal AI assistant. What would you like to know about his projects, background, or skills?`,
+        plain: `Hello! I am Rayane AI, Rayane's assistant. How can I help you today?`,
+        lang
+      };
+    }
+    return {
+      html: `Bonjour ! Je suis <strong>Rayane AI</strong>. Comment puis-je vous renseigner sur Rayane, son projet <em>Oran Road</em>, son parcours ou ses compétences ?`,
+      plain: `Bonjour ! Je suis Rayane AI, l'assistant personnel de Rayane. Que souhaitez-vous savoir ?`,
+      lang
+    };
+  }
+
+  // 8. Fallback / Information non disponible
+  if (isEn) {
+    return {
+      html: `I don't have that specific information in Rayane's portfolio. Feel free to reach out to him directly via email at <a href="mailto:rayaneoa777@gmail.com" class="about-inline-link">rayaneoa777@gmail.com</a>!`,
+      plain: `I do not have this specific information in Rayane's portfolio. Feel free to contact him directly at rayaneoa777@gmail.com.`,
+      lang
+    };
+  }
+  return {
+    html: `Je ne dispose pas de cette information spécifique dans le portfolio de Rayane. N'hésitez pas à lui poser directement la question par email à <a href="mailto:rayaneoa777@gmail.com" class="about-inline-link">rayaneoa777@gmail.com</a> !`,
+    plain: `Je ne dispose pas de cette information spécifique dans le portfolio de Rayane. N'hésitez pas à lui écrire directement à rayaneoa777@gmail.com.`,
+    lang
+  };
+}
+
+// Handle User Submission
+async function handleUserSubmit(queryText) {
+  const text = queryText ? queryText.trim() : (aiChatInput ? aiChatInput.value.trim() : '');
+  if (!text || isAiResponding) return;
+
+  isAiResponding = true;
+  if (aiChatInput) aiChatInput.value = '';
+  if (aiBtnSend) aiBtnSend.disabled = true;
+
+  // Append user bubble
+  appendUserMessage(text);
+
+  // Show thinking indicator
+  appendThinkingIndicator();
+
+  try {
+    const response = await getAIResponse(text);
+    removeThinkingIndicator();
+    appendBotMessage(response.html, response.plain, response.lang);
+  } catch (err) {
+    console.error('AI Error:', err);
+    removeThinkingIndicator();
+    appendBotMessage("Une erreur est survenue lors du traitement. Veuillez réessayer.", "Une erreur est survenue.");
+  } finally {
+    isAiResponding = false;
+    if (aiBtnSend) aiBtnSend.disabled = false;
+    if (aiChatInput) aiChatInput.focus();
+  }
+}
+
+// Form Submit Event
+if (aiChatForm) {
+  aiChatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleUserSubmit();
+  });
+}
+
+// Quick Question Chips Event
+aiQuickPills.forEach(pill => {
+  pill.addEventListener('click', (e) => {
+    e.preventDefault();
+    const q = pill.getAttribute('data-q');
+    if (q) {
+      handleUserSubmit(q);
+    }
+  });
 });
-nextBtn.addEventListener('click', (e) => {
-e.stopPropagation(); nextSlide(); resetAutoCycle();
-});
-carouselCard.addEventListener('click', () => {
-nextSlide(); resetAutoCycle();
-});
-function startAutoCycle() { autoCycleTimer = setInterval(nextSlide, 4000); }
-function resetAutoCycle() { clearInterval(autoCycleTimer); startAutoCycle(); }
-showSlide(0);
-startAutoCycle();
 
 const wordsNormal = "I'm Rayane Ould Ali.".split(' ');
 const wordsMuted = [];
