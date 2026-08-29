@@ -399,7 +399,6 @@ dialog[open]::backdrop{opacity:1}
         </div>
         
         <div id="hero-partners-block" class="reveal-on-ready reveal-fade-up hero-partners-reveal" data-delay="550">
-          <div class="partners-label" style="margin-bottom:0.75rem;font-size:0.75rem;font-weight:500;color:rgba(17,17,17,0.45)">Trusted by</div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);column-gap:1rem;row-gap:0.75rem">
            
           </div>
@@ -701,9 +700,9 @@ dialog[open]::backdrop{opacity:1}
           <svg style="width:1.25rem;height:1.25rem;color:#cf8047" viewBox="0 0 48 48"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z" fill="currentColor"/></svg>
           <span>Rayane</span>
         </div>
-        <p style="max-width:20rem;font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.45">
-          An independent studio crafting brands, products, and the systems that connect them.
-        </p>
+        <div style="margin-top:0.5rem; margin-left:-0.5rem;">
+          <img src="assets/signature.png" alt="Rayane Signature" style="height:6.5rem;width:auto;filter:invert(1);mix-blend-mode:screen;opacity:0.9;">
+        </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1rem">
         <div class="footer-col-title">Company</div>
@@ -726,16 +725,14 @@ dialog[open]::backdrop{opacity:1}
       <div style="display:flex;flex-direction:column;gap:1rem">
         <div class="footer-col-title">Social</div>
         <ul style="display:flex;flex-direction:column;gap:0.75rem">
-          <li><a href="#" class="animated-link"><span class="animated-link-inner">X / Twitter</span></a></li>
-          <li><a href="#" class="animated-link"><span class="animated-link-inner">Behance</span></a></li>
-          <li><a href="#" class="animated-link"><span class="animated-link-inner">Dribbble</span></a></li>
-          <li><a href="#" class="animated-link"><span class="animated-link-inner">LinkedIn</span></a></li>
+          <li><a href="https://www.instagram.com/rayan_ould_ali/" target="_blank" rel="noopener noreferrer" class="animated-link"><span class="animated-link-inner">Instagram</span></a></li>
+          <li><a href="https://www.linkedin.com/in/rayane-ould-ali-393693356" target="_blank" rel="noopener noreferrer" class="animated-link"><span class="animated-link-inner">LinkedIn</span></a></li>
         </ul>
       </div>
     </div>
     
     <div class="footer-legal-bar" style="display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;font-size:0.75rem;color:rgba(255,255,255,0.45)">
-      <div>© 2025 Rayane Studio. All rights reserved.</div>
+      <div>© 2026 Rayane Ould Ali . All rights reserved.</div>
       <div style="display:flex;gap:1.5rem">
         <a href="#privacy" class="animated-link legal-link"><span class="animated-link-inner">Privacy</span></a>
         <a href="#terms" class="animated-link legal-link"><span class="animated-link-inner">Terms</span></a>
@@ -1342,19 +1339,20 @@ if(oranModal) {
   });
 }
 
+requestForm.action = "https://formsubmit.co/rayaneoa777@gmail.com";
+requestForm.method = "POST";
+requestForm.target = "_blank"; // Opens the FormSubmit page in a new tab
+
 requestForm.addEventListener('submit', (e) => {
-e.preventDefault();
-const inputs = requestForm.querySelectorAll('input, textarea');
-inputs.forEach(input => input.disabled = true);
-formSubmitBtn.disabled = true;
-formSubmitBtnText.textContent = 'Sending...';
-setTimeout(() => {
-modalFormState.style.display = 'none';
-modalSuccessState.style.display = 'flex';
-inputs.forEach(input => input.disabled = false);
-formSubmitBtn.disabled = false;
-formSubmitBtnText.textContent = 'Send request';
-}, 1000);
+  // We DO NOT prevent default here so it actually submits natively.
+  formSubmitBtnText.textContent = 'Sending...';
+  
+  // Show success state on the site after a brief delay
+  setTimeout(() => {
+    modalFormState.style.display = 'none';
+    modalSuccessState.style.display = 'flex';
+    formSubmitBtnText.textContent = 'Send request';
+  }, 1000);
 });
 
 function resetModalStates() {
