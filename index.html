@@ -592,6 +592,224 @@ img{display:block}
 @media (min-width:640px){.service-row{gap:1.5rem;padding:2rem 1.5rem}}
 .service-badge{width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:9999px;background:#0a0a0a;color:#fff;transform:translateX(0);transition:transform 0.35s cubic-bezier(0.2,0.8,0.2,1);flex-shrink:0}
 @media (min-width:640px){.service-badge{width:3rem;height:3rem}}
+/* ================= NEW SERVICES & EXPERIENCE ================= */
+.services-new-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .services-new-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .services-new-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.service-card-modern {
+  border: 1px solid rgba(17,17,17,0.1);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fafafa;
+  transition: transform 0.4s cubic-bezier(0.2,0.8,0.25,1), box-shadow 0.4s cubic-bezier(0.2,0.8,0.25,1), background 0.4s ease;
+  height: 100%;
+}
+.service-card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  background: #ffffff;
+}
+.service-icon-wrap {
+  width: 3rem;
+  height: 3rem;
+  background: rgba(17,17,17,0.05);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #111;
+  transition: transform 0.3s ease;
+}
+.service-card-modern:hover .service-icon-wrap {
+  transform: scale(1.1);
+}
+.service-icon-wrap svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.service-card-num {
+  font-size: 0.875rem;
+  color: rgba(17,17,17,0.4);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.service-card-title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+.service-card-subtitle {
+  font-size: 0.9rem;
+  color: #b15f2c;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.service-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(17,17,17,0.7);
+  margin-bottom: 1.5rem;
+}
+.service-tech-title {
+  font-size: 0.75rem;
+  color: rgba(17,17,17,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.service-tag {
+  background: rgba(17,17,17,0.05);
+  color: rgba(17,17,17,0.8);
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.cyber-learning-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(177, 95, 44, 0.1);
+  color: #b15f2c;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Experience Section */
+.exp-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+.exp-card {
+  border: 1px solid rgba(17,17,17,0.1);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  background: #fff;
+  transition: transform 0.4s cubic-bezier(0.2,0.8,0.25,1), box-shadow 0.4s cubic-bezier(0.2,0.8,0.25,1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .exp-card { padding: 2rem; }
+}
+@media (min-width: 768px) {
+  .exp-card {
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+.exp-card:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+  transform: translateY(-3px);
+}
+.exp-card-left {
+  flex-shrink: 0;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .exp-card-left { width: 14rem; }
+}
+.exp-date {
+  font-size: 0.875rem;
+  color: rgba(17,17,17,0.5);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.exp-company {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.25rem;
+}
+.exp-company a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(17,17,17,0.2);
+  transition: color 0.2s, border-color 0.2s;
+}
+.exp-company a:hover {
+  color: #b15f2c;
+  border-color: #b15f2c;
+}
+.exp-role {
+  font-size: 0.95rem;
+  color: #b15f2c;
+  font-weight: 500;
+}
+.exp-card-right {
+  flex: 1;
+}
+.exp-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(17,17,17,0.7);
+  margin-bottom: 1.25rem;
+}
+.exp-resp-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.75rem;
+}
+.exp-resp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.exp-resp-list li {
+  font-size: 0.9rem;
+  color: rgba(17,17,17,0.7);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+.exp-resp-list li::before {
+  content: '•';
+  color: #b15f2c;
+  font-weight: bold;
+}
+.exp-current {
+  border: 1px solid rgba(177, 95, 44, 0.3);
+  background: linear-gradient(145deg, #ffffff, #fdfaf8);
+}
+.exp-current .exp-date {
+  color: #b15f2c;
+  font-weight: 600;
+}
+
 /* ================= LANGUAGES SECTION ================= */
 .languages-grid {
   display: grid;
@@ -1148,64 +1366,170 @@ dialog[open]::backdrop{opacity:1}
   </section>
 
   <section id="services" style="background:#fff">
-    <div class="shell" style="padding:5rem 1.25rem;display:flex;flex-direction:column;gap:0.5rem">
+    <div class="shell" style="padding:5rem 1.25rem 2.5rem;display:flex;flex-direction:column;gap:0.5rem">
       <div class="reveal-scroll reveal-fade-up hero-eyebrow-reveal" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
-        <span style="width:0.375rem;height:0.375rem;background:rgba(17,17,17,0.5);border-radius:9999px"></span>
+        <span style="width:0.375rem;height:0.375rem;background:#b15f2c;border-radius:9999px"></span>
         <span>Services</span>
       </div>
       <h2 class="reveal-scroll reveal-lines text-h2-services" data-delay="120" style="font-weight:600;letter-spacing:-0.02em;margin-top:1.25rem;margin-bottom:3rem;max-width:16ch">
-        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">What we do best</span></span>
+        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">What I do best</span></span>
       </h2>
-      <ul class="reveal-scroll reveal-group" data-stagger="80" style="display:flex;flex-direction:column;width:100%">
-        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-bottom:1px solid #e6e5e2">
-          <a href="#services" style="display:block">
-            <div class="service-row">
-              <div class="service-index">01</div>
-              <h3 class="service-title">Software Development</h3>
-              <p class="service-desc">Scalable web & mobile products built to last.</p>
-              <span class="service-badge">
-                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-              </span>
+      
+      <div class="services-new-grid reveal-scroll reveal-group" data-stagger="80">
+        <!-- 01 Web Dev -->
+        <div class="reveal-item reveal-fade-up">
+          <article class="service-card-modern">
+            <div class="service-card-top">
+              <span class="service-card-num">01</span>
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="service-card-title">Web Development</h3>
+              <div class="service-card-subtitle">Modern Web Experiences</div>
+              <p class="service-card-desc">Creating modern, responsive and interactive websites tailored to project needs.</p>
             </div>
-          </a>
-        </li>
-        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;border-bottom:1px solid #e6e5e2;margin-top:-1px">
-          <a href="#services" style="display:block">
-            <div class="service-row">
-              <div class="service-index">02</div>
-              <h3 class="service-title">Product Design</h3>
-              <p class="service-desc">Interfaces that feel effortless and look sharp.</p>
-              <span class="service-badge">
-                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-              </span>
+            <div class="service-card-bottom">
+              <div class="service-tech-title">Technologies</div>
+              <div class="service-tags">
+                <span class="service-tag">HTML</span>
+                <span class="service-tag">CSS</span>
+                <span class="service-tag">JavaScript</span>
+                <span class="service-tag">Responsive Design</span>
+              </div>
             </div>
-          </a>
-        </li>
-        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;border-bottom:1px solid #e6e5e2;margin-top:-1px">
-          <a href="#services" style="display:block">
-            <div class="service-row">
-              <div class="service-index">03</div>
-              <h3 class="service-title">Quality Assurance</h3>
-              <p class="service-desc">Rigorous testing for flawless, confident releases.</p>
-              <span class="service-badge">
-                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-              </span>
+          </article>
+        </div>
+
+        <!-- 02 Mobile Dev -->
+        <div class="reveal-item reveal-fade-up">
+          <article class="service-card-modern">
+            <div class="service-card-top">
+              <span class="service-card-num">02</span>
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <h3 class="service-card-title">Mobile Development</h3>
+              <div class="service-card-subtitle">Cross-Platform Applications</div>
+              <p class="service-card-desc">Designing and developing modern cross-platform mobile applications.</p>
             </div>
-          </a>
-        </li>
-        <li class="reveal-item reveal-fade-up services-row-reveal" style="border-top:1px solid #e6e5e2;margin-top:-1px">
-          <a href="#services" style="display:block">
-            <div class="service-row">
-              <div class="service-index">04</div>
-              <h3 class="service-title">Consulting</h3>
-              <p class="service-desc">Strategy and direction for ambitious teams.</p>
-              <span class="service-badge">
-                <svg style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-              </span>
+            <div class="service-card-bottom">
+              <div class="service-tech-title">Technologies</div>
+              <div class="service-tags">
+                <span class="service-tag">Flutter</span>
+                <span class="service-tag">Dart</span>
+                <span class="service-tag">API Integration</span>
+                <span class="service-tag">Mobile Dev</span>
+              </div>
             </div>
-          </a>
-        </li>
-      </ul>
+          </article>
+        </div>
+
+        <!-- 03 AI & Data Science -->
+        <div class="reveal-item reveal-fade-up">
+          <article class="service-card-modern">
+            <div class="service-card-top">
+              <span class="service-card-num">03</span>
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="3" ry="3"></ellipse><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <h3 class="service-card-title">AI & Data Science</h3>
+              <div class="service-card-subtitle">Intelligent Solutions</div>
+              <p class="service-card-desc">Exploring and developing solutions around artificial intelligence, data science and natural language processing.</p>
+            </div>
+            <div class="service-card-bottom">
+              <div class="service-tech-title">Technologies</div>
+              <div class="service-tags">
+                <span class="service-tag">Python</span>
+                <span class="service-tag">Data Science</span>
+                <span class="service-tag">NLP</span>
+                <span class="service-tag">AI</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 04 Cybersecurity -->
+        <div class="reveal-item reveal-fade-up">
+          <article class="service-card-modern">
+            <div class="service-card-top">
+              <span class="service-card-num">04</span>
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h3 class="service-card-title">Cybersecurity</h3>
+              <div class="service-card-subtitle">Security & Learning</div>
+              <p class="service-card-desc">Developing my skills in cybersecurity, with a strong interest in application security, network security and secure development.</p>
+              <div class="cyber-learning-label">
+                <svg style="width:1rem;height:1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Currently Learning & Exploring
+              </div>
+            </div>
+            <div class="service-card-bottom" style="margin-top:1.5rem">
+              <div class="service-tech-title">Areas</div>
+              <div class="service-tags">
+                <span class="service-tag">Network Security</span>
+                <span class="service-tag">Web Security</span>
+                <span class="service-tag">Secure Dev</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" style="background:#fff">
+    <div class="shell" style="padding:2.5rem 1.25rem 5rem;display:flex;flex-direction:column;gap:0.5rem">
+      <div class="reveal-scroll reveal-fade-up" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:rgba(17,17,17,0.7)">
+        <span style="width:0.375rem;height:0.375rem;background:#b15f2c;border-radius:9999px"></span>
+        <span>Experience</span>
+      </div>
+      <h2 class="reveal-scroll reveal-lines text-h2-services" data-delay="120" style="font-weight:600;letter-spacing:-0.02em;margin-top:1.25rem;margin-bottom:3rem;max-width:16ch">
+        <span class="line-outer"><span class="line-inner" style="transition-delay:120ms">Professional Journey</span></span>
+      </h2>
+
+      <div class="exp-grid reveal-scroll reveal-group" data-stagger="100">
+        <!-- Experience 01 -->
+        <article class="exp-card exp-current reveal-item reveal-fade-up">
+          <div class="exp-card-left">
+            <div class="exp-date">July 2026 — Present</div>
+            <h3 class="exp-company"><a href="https://ziani-auto-immo.com/" target="_blank" rel="noopener">Ziani · Auto & Immobilier</a></h3>
+            <div class="exp-role">Digital Communication & Social Media</div>
+          </div>
+          <div class="exp-card-right">
+            <p class="exp-desc">I currently work at Ziani · Auto & Immobilier, an agency specializing in automotive and real estate services.</p>
+            <div class="exp-resp-title">Responsibilities</div>
+            <ul class="exp-resp-list">
+              <li>Managing and growing social media presence</li>
+              <li>Creating content for social media platforms</li>
+              <li>Designing promotional visuals and marketing materials</li>
+              <li>Preparing social media publications</li>
+              <li>Promoting and showcasing real estate properties and vehicles</li>
+              <li>Contributing to the agency's digital communication strategy</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Experience 02 -->
+        <article class="exp-card reveal-item reveal-fade-up">
+          <div class="exp-card-left">
+            <div class="exp-date">March 2026</div>
+            <h3 class="exp-company">Sonelgaz — Oran / Es-Sénia</h3>
+            <div class="exp-role">Internship</div>
+          </div>
+          <div class="exp-card-right">
+            <p class="exp-desc">I completed an internship at Sonelgaz in Oran / Es-Sénia.</p>
+            <div class="exp-resp-title" style="display:none;">Responsibilities</div>
+            <ul class="exp-resp-list" style="display:none;">
+              <!-- Responsibilities to be added later -->
+            </ul>
+            <div class="service-tech-title" style="margin-top:1rem;display:none;">Technologies used</div>
+            <div class="service-tags" style="display:none;">
+              <!-- Technologies to be added later -->
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
